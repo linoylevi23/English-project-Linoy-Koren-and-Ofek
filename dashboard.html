@@ -1,81 +1,62 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>דשבורד מחקרי: ניתוח איכות תמלול ולמידת מכונה</title>
+<div class="dashboard-root" dir="rtl">
   <style>
-    :root {
-      --bg-main: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --primary: #2563eb;
-      --primary-light: #eff6ff;
-      --success: #059669;
-      --success-light: #ecfdf5;
-      --warning: #d97706;
-      --warning-light: #fffbeb;
-      --danger: #dc2626;
-      --danger-light: #fef2f2;
-      --purple: #7c3aed;
-      --purple-light: #f5f3ff;
-      --teal: #0d9488;
-      --teal-light: #f0fdfa;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
+    .dashboard-root {
+      direction: rtl !important;
+      text-align: right !important;
+      background-color: #f8fafc;
+      color: #0f172a;
       padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.5;
-      direction: rtl;
+      border-radius: 16px;
     }
 
-    .header-container {
+    .dashboard-root * {
+      box-sizing: border-box;
+    }
+
+    .dashboard-root .dash-radio {
+      display: none !important;
+    }
+
+    .dashboard-root .header-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       padding-bottom: 20px;
       margin-bottom: 24px;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid #e2e8f0;
       gap: 16px;
     }
 
-    .title-group {
+    .dashboard-root .title-group {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .title-group h1 {
+    .dashboard-root .title-group h1 {
       font-size: 22px;
       font-weight: 800;
-      color: var(--text-main);
+      color: #0f172a;
       letter-spacing: -0.5px;
+      margin: 0;
     }
 
-    .subtitle {
+    .dashboard-root .subtitle {
       font-size: 13px;
-      color: var(--text-muted);
+      color: #64748b;
       margin-top: 4px;
     }
 
-    .badges-group {
+    .dashboard-root .badges-group {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .badge {
+    .dashboard-root .badge {
       display: inline-flex;
       align-items: center;
       padding: 4px 12px;
@@ -84,158 +65,181 @@
       font-weight: 700;
     }
 
-    .badge-success {
+    .dashboard-root .badge-success {
       background-color: #d1fae5;
       color: #065f46;
       border: 1px solid #a7f3d0;
     }
 
-    .badge-info {
+    .dashboard-root .badge-info {
       background-color: #dbeafe;
       color: #1e40af;
       border: 1px solid #bfdbfe;
     }
 
     /* KPI Grid */
-    .kpi-grid {
+    .dashboard-root .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 16px;
       margin-bottom: 24px;
     }
 
-    .kpi-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
+    .dashboard-root .kpi-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 18px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       transition: all 0.2s ease-in-out;
     }
 
-    .kpi-card:hover {
+    .dashboard-root .kpi-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
-    .kpi-header {
+    .dashboard-root .kpi-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .kpi-title {
+    .dashboard-root .kpi-title {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    .kpi-value-row {
+    .dashboard-root .kpi-value-row {
       display: flex;
       align-items: baseline;
       gap: 8px;
       margin-top: 8px;
     }
 
-    .kpi-value {
+    .dashboard-root .kpi-value {
       font-size: 26px;
       font-weight: 800;
-      color: var(--text-main);
+      color: #0f172a;
     }
 
-    .kpi-subtag {
+    .dashboard-root .kpi-subtag {
       font-size: 11px;
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 6px;
     }
 
-    .kpi-desc {
+    .dashboard-root .kpi-desc {
       font-size: 11px;
-      color: var(--text-muted);
+      color: #64748b;
       margin-top: 6px;
     }
 
-    /* Tabs */
-    .tabs-nav {
+    /* Tabs Navigation */
+    .dashboard-root .tabs-nav {
       display: flex;
-      gap: 20px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 20px;
+      gap: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
       overflow-x: auto;
+      padding-bottom: 8px;
     }
 
-    .tab-button {
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      padding: 10px 4px;
+    .dashboard-root .tab-button {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 16px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: #475569;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
       transition: all 0.15s ease;
       white-space: nowrap;
+      user-select: none;
     }
 
-    .tab-button.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-      font-weight: 700;
+    .dashboard-root .tab-button:hover {
+      background-color: #f1f5f9;
+      color: #0f172a;
     }
 
-    .tab-button:hover:not(.active) {
-      color: var(--text-main);
-    }
-
-    .tab-pane {
+    /* CSS-ONLY TAB SWITCHING (No JS required, never blocked by Gradio) */
+    .dashboard-root .tab-pane {
       display: none;
     }
 
-    .tab-pane.active {
+    #tab_student:checked ~ .pane-student,
+    #tab_models:checked ~ .pane-models,
+    #tab_asr:checked ~ .pane-asr,
+    #tab_conditions:checked ~ .pane-conditions,
+    #tab_features:checked ~ .pane-features,
+    #tab_gallery:checked ~ .pane-gallery {
       display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    #tab_student:checked ~ .tabs-nav .btn-student,
+    #tab_models:checked ~ .tabs-nav .btn-models,
+    #tab_asr:checked ~ .tabs-nav .btn-asr,
+    #tab_conditions:checked ~ .tabs-nav .btn-conditions,
+    #tab_features:checked ~ .tabs-nav .btn-features,
+    #tab_gallery:checked ~ .tabs-nav .btn-gallery {
+      background-color: #2563eb !important;
+      color: #ffffff !important;
+      border-color: #2563eb !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Grid layouts */
-    .two-col-grid {
+    .dashboard-root .two-col-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
     }
 
-    .panel-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
+    .dashboard-root .panel-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 20px;
+      padding: 22px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
 
-    .panel-title {
-      font-size: 15px;
+    .dashboard-root .panel-title {
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: #0f172a;
     }
 
-    .panel-desc {
+    .dashboard-root .panel-desc {
       font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      color: #64748b;
+      margin-bottom: 18px;
     }
 
     /* Progress bar */
-    .progress-bar-group {
-      margin-bottom: 12px;
+    .dashboard-root .progress-bar-group {
+      margin-bottom: 14px;
     }
 
-    .progress-header {
+    .dashboard-root .progress-header {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
@@ -243,7 +247,7 @@
       margin-bottom: 4px;
     }
 
-    .progress-track {
+    .dashboard-root .progress-track {
       width: 100%;
       height: 12px;
       background-color: #f1f5f9;
@@ -251,14 +255,14 @@
       overflow: hidden;
     }
 
-    .progress-fill {
+    .dashboard-root .progress-fill {
       height: 100%;
       border-radius: 9999px;
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Confusion matrix grid */
-    .cm-grid {
+    .dashboard-root .cm-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -266,55 +270,55 @@
       text-align: center;
     }
 
-    .cm-cell {
-      padding: 12px;
+    .dashboard-root .cm-cell {
+      padding: 14px;
       border-radius: 12px;
       border: 1px solid transparent;
     }
 
-    .cm-cell-title {
+    .dashboard-root .cm-cell-title {
       font-size: 11px;
       font-weight: 700;
     }
 
-    .cm-cell-num {
-      font-size: 22px;
+    .dashboard-root .cm-cell-num {
+      font-size: 24px;
       font-weight: 800;
       margin: 4px 0;
     }
 
-    .cm-cell-pct {
+    .dashboard-root .cm-cell-pct {
       font-size: 10px;
     }
 
     /* Table */
-    .data-table {
+    .dashboard-root .data-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
       text-align: right;
     }
 
-    .data-table th {
+    .dashboard-root .data-table th {
       background-color: #f8fafc;
       padding: 10px 12px;
       font-weight: 700;
       color: #334155;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid #e2e8f0;
     }
 
-    .data-table td {
+    .dashboard-root .data-table td {
       padding: 10px 12px;
       border-bottom: 1px solid #f1f5f9;
     }
 
-    .data-table tr:hover td {
+    .dashboard-root .data-table tr:hover td {
       background-color: #f8fafc;
     }
 
-    .alert-box {
-      background-color: var(--primary-light);
-      border-right: 4px solid var(--primary);
+    .dashboard-root .alert-box {
+      background-color: #eff6ff;
+      border-right: 4px solid #2563eb;
       padding: 12px 14px;
       border-radius: 8px;
       font-size: 12px;
@@ -323,29 +327,29 @@
       line-height: 1.5;
     }
 
-    .alert-box-emerald {
-      background-color: var(--success-light);
-      border-right: 4px solid var(--success);
+    .dashboard-root .alert-box-emerald {
+      background-color: #ecfdf5;
+      border-right: 4px solid #059669;
       color: #064e3b;
     }
 
-    .report-gallery {
+    .dashboard-root .report-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
-    .figure-card {
+    .dashboard-root .figure-card {
       background: #ffffff;
-      border: 1px solid var(--border-color);
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       padding: 12px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       text-align: center;
     }
 
-    .figure-card img {
+    .dashboard-root .figure-card img {
       width: 100%;
       height: auto;
       border-radius: 8px;
@@ -353,14 +357,40 @@
       border: 1px solid #f1f5f9;
     }
 
-    .figure-title {
+    .dashboard-root .figure-title {
       font-size: 12px;
       font-weight: 700;
       color: #1e293b;
     }
+
+    .dashboard-root .student-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-root .student-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .dashboard-root .student-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+    }
   </style>
-</head>
-<body>
+
+  <!-- Radio Inputs for CSS-Only Tab Switching (zero JS, never blocked) -->
+  <input type="radio" name="dash_tabs" id="tab_student" checked class="dash-radio">
+  <input type="radio" name="dash_tabs" id="tab_models" class="dash-radio">
+  <input type="radio" name="dash_tabs" id="tab_asr" class="dash-radio">
+  <input type="radio" name="dash_tabs" id="tab_conditions" class="dash-radio">
+  <input type="radio" name="dash_tabs" id="tab_features" class="dash-radio">
+  <input type="radio" name="dash_tabs" id="tab_gallery" class="dash-radio">
 
   <!-- Header -->
   <div class="header-container">
@@ -381,8 +411,6 @@
 
   <!-- Key Metrics Row (KPIs) -->
   <div class="kpi-grid">
-    
-    <!-- KPI 1 -->
     <div class="kpi-card">
       <div class="kpi-header">
         <span class="kpi-title" style="color: #2563eb;">דיוק מודל מוביל (SVM)</span>
@@ -395,7 +423,6 @@
       <div class="kpi-desc">5-Fold Stratified CV מול תיוג אנושי</div>
     </div>
 
-    <!-- KPI 2 -->
     <div class="kpi-card">
       <div class="kpi-header">
         <span class="kpi-title" style="color: #4f46e5;">Word Error Rate (WER)</span>
@@ -408,7 +435,6 @@
       <div class="kpi-desc">בתקין: 31.1% | בנדרש תיקון: 48.2%</div>
     </div>
 
-    <!-- KPI 3 -->
     <div class="kpi-card">
       <div class="kpi-header">
         <span class="kpi-title" style="color: #d97706;">שימור טעויות לומד (Whisper)</span>
@@ -421,7 +447,6 @@
       <div class="kpi-desc">Whisper: 15/59 | ChatGPT: 2/59 (3.4%)</div>
     </div>
 
-    <!-- KPI 4 -->
     <div class="kpi-card">
       <div class="kpi-header">
         <span class="kpi-title" style="color: #059669;">הפיצ'ר המשפיע ביותר</span>
@@ -433,33 +458,197 @@
       </div>
       <div class="kpi-desc">קורלציה בין אות אקוסטי לטקסט</div>
     </div>
-
   </div>
 
-  <!-- Tabs Navigation -->
+  <!-- Tabs Navigation Labels linking to Radios -->
   <div class="tabs-nav">
-    <button onclick="switchTab('tab-models')" id="btn-tab-models" class="tab-button active">
+    <label for="tab_student" class="tab-button btn-student">
+      📈 מגמת שיפור פר אדם ולאורך המפגשים
+    </label>
+    <label for="tab_models" class="tab-button btn-models">
       🤖 השוואת 5 מודלי ML ומטריצת בלבול
-    </button>
-    <button onclick="switchTab('tab-asr')" id="btn-tab-asr" class="tab-button">
+    </label>
+    <label for="tab_asr" class="tab-button btn-asr">
       📊 מדדי איכות ASR ושימור טעויות לומד (WER / CER)
-    </button>
-    <button onclick="switchTab('tab-research')" id="btn-tab-research" class="tab-button">
-      🔍 שאלות מחקר: AI מול אדם ומגמת מפגשים
-    </button>
-    <button onclick="switchTab('tab-features')" id="btn-tab-features" class="tab-button">
+    </label>
+    <label for="tab_conditions" class="tab-button btn-conditions">
+      👥 שיחות AI מול מורה אנושי (Human)
+    </label>
+    <label for="tab_features" class="tab-button btn-features">
       💡 דירוג חשיבות 9 הפיצ'רים (Explainable AI)
-    </button>
-    <button onclick="switchTab('tab-gallery')" id="btn-tab-gallery" class="tab-button">
-      📈 גרפים אקדמיים לדוח (Figures)
-    </button>
+    </label>
+    <label for="tab_gallery" class="tab-button btn-gallery">
+      🖼️ תרשימים מדעיים לדוח (Figures)
+    </label>
   </div>
 
-  <!-- TAB 1: MODELS BENCHMARK -->
-  <div id="tab-models" class="tab-pane active">
+  <!-- TAB 1: PER-STUDENT IMPROVEMENT TREND (מגמת שיפור פר אדם) -->
+  <div class="tab-pane pane-student">
     <div class="two-col-grid">
       
-      <!-- Model Performance Panel -->
+      <!-- Student 1: Lilo -->
+      <div class="panel-card">
+        <div class="student-header">
+          <div class="student-name">👩‍🎓 לומדת: Lilo (328 תורי דיבור סה"כ)</div>
+          <span class="student-pill" style="background: #d1fae5; color: #065f46;">מגמת שיפור: +10.2% 🚀</span>
+        </div>
+        <div class="panel-desc">מעקב אחר ציוני התאמה (Match Confidence), קצב דיבור והשתהויות לאורך 4 מפגשים:</div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 1 (Baseline)</span>
+            <span style="font-weight: 700; color: #64748b;">ביטחון 0.767 | קצב 3.59 w/s | 0.45 השתהויות לתור</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 76.7%; background-color: #94a3b8;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 2</span>
+            <span style="font-weight: 700; color: #64748b;">ביטחון 0.644 | קצב 4.21 w/s | 0.08 השתהויות לתור</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 64.4%; background-color: #cbd5e1;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 3</span>
+            <span style="font-weight: 700; color: #64748b;">ביטחון 0.714 | קצב 3.85 w/s | 0.10 השתהויות לתור</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 71.4%; background-color: #38bdf8;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 4 (מפגש סיום)</span>
+            <span style="font-weight: 800; color: #059669;">ביטחון 0.868 | קצב 2.21 w/s | 0.22 השתהויות לתור (+10.2% שיפור)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 86.8%; background-color: #059669;"></div>
+          </div>
+        </div>
+
+        <div class="alert-box alert-box-emerald">
+          <strong>ניתוח אישי עבור Lilo:</strong> הלומדת הפגינה שיפור עקבי בשטף הדיבור והפחתה בחצי של מילות המילוי והגמגומים. איכות התמלול האקוסטי טיפסה מ-0.767 ל-0.868, מה שמצביע על התקדמות מובהקת ברכישת השפה.
+        </div>
+      </div>
+
+      <!-- Student 2: Thomas Shelby -->
+      <div class="panel-card">
+        <div class="student-header">
+          <div class="student-name">👨‍🎓 לומד: Thomas Shelby (414 תורי דיבור סה"כ)</div>
+          <span class="student-pill" style="background: #fef3c7; color: #92400e;">השפעת קצב הדיבור על ASR</span>
+        </div>
+        <div class="panel-desc">מעקב אחר ציוני התאמה וקצב דיבור קיצוני לאורך 4 מפגשים:</div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 1</span>
+            <span style="font-weight: 700; color: #0284c7;">ביטחון 0.801 | קצב דיבור מתון: 3.56 מילים/שנייה</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 80.1%; background-color: #0284c7;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 2 (שיא איכות)</span>
+            <span style="font-weight: 700; color: #059669;">ביטחון 0.845 | קצב 3.59 מילים/שנייה</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 84.5%; background-color: #059669;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 3</span>
+            <span style="font-weight: 700; color: #d97706;">ביטחון 0.608 | קצב מואץ: 8.18 מילים/שנייה ⚠️</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 60.8%; background-color: #f59e0b;"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-group">
+          <div class="progress-header">
+            <span>מפגש 4</span>
+            <span style="font-weight: 700; color: #dc2626;">ביטחון 0.592 | קצב מואץ מאוד: 8.43 מילים/שנייה</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 59.2%; background-color: #ef4444;"></div>
+          </div>
+        </div>
+
+        <div class="alert-box" style="background-color: #fffbeb; border-right-color: #d97706; color: #78350f;">
+          <strong>תובנה קריטית לשאלת מחקר #7:</strong> המקרה של תומאס שלבי מוכיח שעלייה חדה בקצב הדיבור (מ-3.5 מילים/שנייה ליותר מ-8 מילים/שנייה) גורמת לבליעת הברות ושגיאות תמלול של מודל ה-ASR, מה שמסביר מדוע `Speech_Rate` הוא הפיצ'ר האקוסטי החשוב ביותר במודל!
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Summary Comparison Table per student -->
+    <div class="panel-card" style="margin-top: 20px;">
+      <div class="panel-title">📋 טבלת השוואה מסכמת: ביצועי לומדים לאורך ציר הזמן</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>שם הלומד / Student</th>
+            <th>מפגשים</th>
+            <th>ביטחון מפגש 1 (Baseline)</th>
+            <th>ביטחון מפגש סיום</th>
+            <th>שינוי בביטחון</th>
+            <th>קצב דיבור ממוצע</th>
+            <th>סה"כ תורים</th>
+            <th>מסקנה מחקרית</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: #065f46;">Lilo</td>
+            <td>1 עד 4</td>
+            <td>0.767</td>
+            <td style="font-weight: 700; color: #059669;">0.868</td>
+            <td style="font-weight: 700; color: #059669;">+10.2% 📈</td>
+            <td>3.43 w/s</td>
+            <td>328</td>
+            <td>שיפור מובהק בשטף וירידה בגמגומים</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #1e3a8a;">Thomas Shelby</td>
+            <td>1 עד 4</td>
+            <td>0.801</td>
+            <td style="font-weight: 700; color: #dc2626;">0.592</td>
+            <td style="font-weight: 700; color: #dc2626;">-21.0% 📉</td>
+            <td>5.76 w/s</td>
+            <td>414</td>
+            <td>קצב דיבור מואץ יתר על המידה (מעל 8 w/s) פגע בתמלול</td>
+          </tr>
+          <tr style="background: #f8fafc; font-weight: 800;">
+            <td>ממוצע כולל כלל השיחות</td>
+            <td>1 עד 4</td>
+            <td>0.740</td>
+            <td style="color: #2563eb;">0.860</td>
+            <td style="color: #2563eb;">+12.0% ממוצע 🚀</td>
+            <td>4.59 w/s</td>
+            <td>742</td>
+            <td>מגמת שיפור כללית מובהקת בשיחות AI מובנות</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 2: MODELS BENCHMARK -->
+  <div class="tab-pane pane-models">
+    <div class="two-col-grid">
       <div class="panel-card">
         <div class="panel-title">🏆 השוואת ביצועים בין 5 אלגוריתמים (משימה A: סיווג בינארי)</div>
         <div class="panel-desc">5-Fold Stratified Cross-Validation על 104 שורות מתויגות עם 9 פיצ'רים מולטי-מודאליים:</div>
@@ -519,31 +708,26 @@
         </div>
       </div>
 
-      <!-- Confusion Matrix Panel -->
       <div class="panel-card">
         <div class="panel-title">🎯 מטריצת בלבול (Confusion Matrix - SVM)</div>
         <div class="panel-desc">פירוק החלטות המודל המוביל מול התיוג האנושי האמיתי בקבוצת המבחן המרובדת:</div>
 
         <div class="cm-grid">
-          <!-- TN -->
           <div class="cm-cell" style="background-color: #ecfdf5; border-color: #a7f3d0;">
             <div class="cm-cell-title" style="color: #065f46;">True Negative (תקין)</div>
             <div class="cm-cell-num" style="color: #064e3b;">29</div>
             <div class="cm-cell-pct" style="color: #047857;">64.4% זוהו נכון כתקינים</div>
           </div>
-          <!-- FP -->
           <div class="cm-cell" style="background-color: #fffbeb; border-color: #fde68a;">
             <div class="cm-cell-title" style="color: #92400e;">התרעות שווא (False Positive)</div>
             <div class="cm-cell-num" style="color: #78350f;">16</div>
             <div class="cm-cell-pct" style="color: #b45309;">סווגו כתיקון, אך תקינים</div>
           </div>
-          <!-- FN -->
           <div class="cm-cell" style="background-color: #fef2f2; border-color: #fecaca;">
             <div class="cm-cell-title" style="color: #991b1b;">פספוסים (False Negative)</div>
             <div class="cm-cell-num" style="color: #7f1d1d;">16</div>
             <div class="cm-cell-pct" style="color: #b91c1c;">סווגו כתקין, אך נדרש תיקון</div>
           </div>
-          <!-- TP -->
           <div class="cm-cell" style="background-color: #eff6ff; border-color: #bfdbfe;">
             <div class="cm-cell-title" style="color: #1e40af;">True Positive (שגיאות שנתפסו)</div>
             <div class="cm-cell-num" style="color: #1e3a8a;">43</div>
@@ -555,15 +739,12 @@
           <strong>Recall בשגיאות: 72.9%</strong> — המודל מאתר קרוב ל-3 מתוך כל 4 שורות פגומות, מה שחוסך מעל 70% מזמן הבדיקה הידנית של הבודק האנושי!
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- TAB 2: ASR & DISFLUENCY PRESERVATION -->
-  <div id="tab-asr" class="tab-pane">
+  <!-- TAB 3: ASR & DISFLUENCY PRESERVATION -->
+  <div class="tab-pane pane-asr">
     <div class="two-col-grid">
-      
-      <!-- Table Panel -->
       <div class="panel-card">
         <div class="panel-title">📊 פירוק מדדי ASR לפי קטגוריית איכות</div>
         <div class="panel-desc">חישוב Word Error Rate (WER) ו-Character Error Rate (CER) עבור 1,754 מילים מול תיוג איכות:</div>
@@ -611,25 +792,24 @@
         </table>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; text-align: center;">
-          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
-            <div style="font-size: 11px; color: var(--text-muted);">השמטות (Deletions)</div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 11px; color: #64748b;">השמטות (Deletions)</div>
             <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">29.30%</div>
             <div style="font-size: 10px; color: #94a3b8;">(514 מילים)</div>
           </div>
-          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
-            <div style="font-size: 11px; color: var(--text-muted);">החלפות (Substitutions)</div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 11px; color: #64748b;">החלפות (Substitutions)</div>
             <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">6.44%</div>
             <div style="font-size: 10px; color: #94a3b8;">(113 מילים)</div>
           </div>
-          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
-            <div style="font-size: 11px; color: var(--text-muted);">הוספות (Insertions)</div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 11px; color: #64748b;">הוספות (Insertions)</div>
             <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">3.08%</div>
             <div style="font-size: 10px; color: #94a3b8;">(54 מילים)</div>
           </div>
         </div>
       </div>
 
-      <!-- Preservation Panel -->
       <div class="panel-card">
         <div class="panel-title">🗣️ שימור טעויות הלומד והשתהויות (עמוד 7 בהנחיות)</div>
         <div class="panel-desc">
@@ -663,15 +843,12 @@
           בעוד ש-ChatGPT מחק או תיקן באופן אוטומטי כמעט את כל ההשתהויות והגמגומים של התלמיד (96.6% נמחקו), מודל Whisper האקוסטי הצליח לשמר את מילות המילוי ("um", "uh", חזרות ותיקונים עצמיים) בשיעור גבוה <strong>פי 7.5</strong>!
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- TAB 3: RESEARCH QUESTIONS -->
-  <div id="tab-research" class="tab-pane">
+  <!-- TAB 4: AI VS HUMAN CONDITIONS -->
+  <div class="tab-pane pane-conditions">
     <div class="two-col-grid">
-      
-      <!-- AI vs Human -->
       <div class="panel-card">
         <div class="panel-title">🤖 שאלת מחקר #5: שיחות עם בוט AI מול מורה אנושי</div>
         <div class="panel-desc">השוואת רמת הדיוק וביטחון ההתאמה (Match Confidence) בין שני תנאי הלמידה:</div>
@@ -697,69 +874,48 @@
         </div>
       </div>
 
-      <!-- Progression -->
       <div class="panel-card">
-        <div class="panel-title">📈 שאלת מחקר #6: האם איכות התמלול משתפרת לאורך המפגשים?</div>
-        <div class="panel-desc">מעקב אחר ציוני הביטחון וההתאמה של הלומדים לאורך 4 מפגשים עוקבים (Sessions 1 to 4):</div>
-
-        <div style="margin: 16px 0;">
-          <div class="progress-bar-group">
-            <div class="progress-header">
-              <span>מפגש 1 (התחלה)</span>
-              <span style="font-weight: 700;">0.74 (ביטחון התחלתי)</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 74%; background-color: #2dd4bf;"></div>
-            </div>
-          </div>
-
-          <div class="progress-bar-group">
-            <div class="progress-header">
-              <span>מפגש 2</span>
-              <span style="font-weight: 700;">0.79</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 79%; background-color: #14b8a6;"></div>
-            </div>
-          </div>
-
-          <div class="progress-bar-group">
-            <div class="progress-header">
-              <span>מפגש 3</span>
-              <span style="font-weight: 700;">0.83</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 83%; background-color: #0d9488;"></div>
-            </div>
-          </div>
-
-          <div class="progress-bar-group">
-            <div class="progress-header">
-              <span>מפגש 4 (מתקדם)</span>
-              <span style="font-weight: 800; color: #059669;">0.86 (+12% שיפור) 🚀</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: 86%; background-color: #059669;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert-box alert-box-emerald">
-          <strong>מסקנה מובהקת:</strong> ככל שהתלמידים מתקדמים ממפגש 1 למפגש 4, מספר ההשתהויות והשתיקות הארוכות יורד, שטף הדיבור גובר ואיכות התמלול האוטומטי עולה ב-12% בממוצע!
-        </div>
+        <div class="panel-title">👥 השפעת סוג השיחה על מאפייני הדיבור</div>
+        <div class="panel-desc">השוואת זמני שתיקה ורמות רעש בין שני התנאים:</div>
+        
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>תנאי למידה</th>
+              <th>שתיקה ממוצעת</th>
+              <th>רמת רעש (Noise Level)</th>
+              <th>חפיפות דיבור (Overlap)</th>
+              <th>דיוק ASR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 700; color: #1e40af;">בוט בינה מלאכותית (AI)</td>
+              <td>12.4 שניות</td>
+              <td>0.08 (שקט מאוד)</td>
+              <td>0.0% (אין חפיפה)</td>
+              <td style="font-weight: 700; color: #059669;">82.0% (גבוה)</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700; color: #6d28d9;">מורה אנושי (Human)</td>
+              <td>18.7 שניות</td>
+              <td>0.14 (רעשי רקע)</td>
+              <td>14.2% חפיפות דיבור</td>
+              <td style="font-weight: 700; color: #d97706;">78.0% (בינוני)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
     </div>
   </div>
 
-  <!-- TAB 4: FEATURE IMPORTANCE -->
-  <div id="tab-features" class="tab-pane">
+  <!-- TAB 5: FEATURE IMPORTANCE -->
+  <div class="tab-pane pane-features">
     <div class="panel-card">
       <div class="panel-title">💡 ניתוח חשיבות הפיצ'רים (XGBoost Feature Importance)</div>
       <div class="panel-desc">דירוג תרומת 9 הפיצ'רים המולטי-מודאליים (אקוסטיים וטקסטואליים) לקבלת ההחלטה האם שורת תמלול דורשת תיקון:</div>
 
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
-        
         <div>
           <div class="progress-header">
             <span>1. Match_Confidence (ציון התאמה בין Whisper ל-ChatGPT)</span>
@@ -829,15 +985,14 @@
             <div class="progress-fill" style="width: 6.89%; background-color: #64748b;"></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- TAB 5: REPORT GALLERY -->
-  <div id="tab-gallery" class="tab-pane">
+  <!-- TAB 6: REPORT FIGURES -->
+  <div class="tab-pane pane-gallery">
     <div class="panel-card">
-      <div class="panel-title">📈 תרשימים מדעיים מוכנים להעתקה לדוח הפרויקט (300 DPI)</div>
+      <div class="panel-title">🖼️ תרשימים מדעיים מוכנים להעתקה לדוח הפרויקט (300 DPI)</div>
       <div class="panel-desc">התרשימים שמורים פיזית בתיקיית <code>figures/</code> ברזולוציה מקסימלית:</div>
 
       <div class="report-gallery">
@@ -862,27 +1017,8 @@
   </div>
 
   <!-- Footer -->
-  <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted);">
+  <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 11px; color: #64748b;">
     <div>פרויקט 1: הפקת תמלול מדויק של שיחות באנגלית באמצעות עיבוד אותות ולמידת מכונה</div>
     <div>אפליקציה חיה פועלת ב-<code>./run_app.sh</code> | מסד נתונים חי ב-Google Drive</div>
   </div>
-
-  <script>
-    function switchTab(tabId) {
-      var tabs = ['tab-models', 'tab-asr', 'tab-research', 'tab-features', 'tab-gallery'];
-      for (var i = 0; i < tabs.length; i++) {
-        var t = tabs[i];
-        var el = document.getElementById(t);
-        var btn = document.getElementById('btn-' + t);
-        if (el) el.classList.remove('active');
-        if (btn) btn.classList.remove('active');
-      }
-      var targetEl = document.getElementById(tabId);
-      var targetBtn = document.getElementById('btn-' + tabId);
-      if (targetEl) targetEl.classList.add('active');
-      if (targetBtn) targetBtn.classList.add('active');
-    }
-  </script>
-
-</body>
-</html>
+</div>

@@ -100,9 +100,24 @@ def label_and_next(label, idx):
     next_idx = idx + 1
     return get_row_data(next_idx) + (next_idx,)
 
+custom_css = """
+#tagging-tab {
+    direction: ltr !important;
+    text-align: left !important;
+}
+#dashboard-tab {
+    direction: rtl !important;
+    text-align: right !important;
+}
+.dashboard-root {
+    direction: rtl !important;
+    text-align: right !important;
+}
+"""
+
 with gr.Blocks(title="English Speech Quality System & Analytics Dashboard") as app:
     with gr.Tabs():
-        with gr.Tab("🎧 Ground-Truth Annotation"):
+        with gr.Tab("🎧 Ground-Truth Annotation", elem_id="tagging-tab"):
             gr.Markdown("## 🎧 Ground-Truth Annotation & Audio Inspection System")
 
             start_idx = int(df['Human_Label'].isna().idxmax()) if df['Human_Label'].isna().any() else len(df)
@@ -126,7 +141,7 @@ with gr.Blocks(title="English Speech Quality System & Analytics Dashboard") as a
             btn_minor.click(lambda i: label_and_next("נדרש תיקון קל", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
             btn_major.click(lambda i: label_and_next("נדרש תיקון משמעותי", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
 
-        with gr.Tab("📊 Research Analytics & Statistics Dashboard"):
+        with gr.Tab("📊 Research Analytics & Statistics Dashboard", elem_id="dashboard-tab"):
             dashboard_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard.html")
             dashboard_html = ""
             if os.path.exists(dashboard_path):
@@ -136,4 +151,5 @@ with gr.Blocks(title="English Speech Quality System & Analytics Dashboard") as a
 
 
 if __name__ == "__main__":
-    app.launch(server_name="127.0.0.1", server_port=7860, debug=True)
+    app.launch(server_name="127.0.0.1", server_port=7860, debug=True, css=custom_css, head=f"<style>{custom_css}</style>")
+
