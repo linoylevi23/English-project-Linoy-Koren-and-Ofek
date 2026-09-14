@@ -100,29 +100,76 @@ def label_and_next(label, idx):
     next_idx = idx + 1
     return get_row_data(next_idx) + (next_idx,)
 
-with gr.Blocks(title="Interactive Transcript Tagging Dashboard") as app:
-    gr.Markdown("## 🎧 Ground-Truth Annotation & Audio Inspection System")
+with gr.Blocks(title="English Speech Quality System & Analytics Dashboard") as app:
+    with gr.Tabs():
+        with gr.Tab("🎧 Ground-Truth Annotation"):
+            gr.Markdown("## 🎧 Ground-Truth Annotation & Audio Inspection System")
 
-    start_idx = int(df['Human_Label'].isna().idxmax()) if df['Human_Label'].isna().any() else len(df)
-    idx_state = gr.State(value=start_idx)
+            start_idx = int(df['Human_Label'].isna().idxmax()) if df['Human_Label'].isna().any() else len(df)
+            idx_state = gr.State(value=start_idx)
 
-    with gr.Row():
-        file_info = gr.Textbox(label="Recording Metadata", interactive=False)
-        prog_text = gr.Textbox(label="Overall Progress", interactive=False)
-    with gr.Row():
-        audio_player = gr.Audio(label="Synchronized Audio Segment", type="filepath")
-    with gr.Row():
-        chatgpt_box = gr.Textbox(label="ChatGPT Transcript", interactive=False)
-        whisper_box = gr.Textbox(label="Acoustic Whisper Transcript", interactive=False)
-    with gr.Row():
-        btn_good = gr.Button("Valid / תקין ✅", variant="primary")
-        btn_minor = gr.Button("Minor Correction / נדרש תיקון קל ⚠️")
-        btn_major = gr.Button("Major Correction / נדרש תיקון משמעותי ❌", variant="stop")
+            with gr.Row():
+                file_info = gr.Textbox(label="Recording Metadata", interactive=False)
+                prog_text = gr.Textbox(label="Overall Progress", interactive=False)
+            with gr.Row():
+                audio_player = gr.Audio(label="Synchronized Audio Segment", type="filepath")
+            with gr.Row():
+                chatgpt_box = gr.Textbox(label="ChatGPT Transcript", interactive=False)
+                whisper_box = gr.Textbox(label="Acoustic Whisper Transcript", interactive=False)
+            with gr.Row():
+                btn_good = gr.Button("Valid / תקין ✅", variant="primary")
+                btn_minor = gr.Button("Minor Correction / נדרש תיקון קל ⚠️")
+                btn_major = gr.Button("Major Correction / נדרש תיקון משמעותי ❌", variant="stop")
 
-    app.load(get_row_data, inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info])
-    btn_good.click(lambda i: label_and_next("תקין", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
-    btn_minor.click(lambda i: label_and_next("נדרש תיקון קל", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
-    btn_major.click(lambda i: label_and_next("נדרש תיקון משמעותי", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
+            app.load(get_row_data, inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info])
+            btn_good.click(lambda i: label_and_next("תקין", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
+            btn_minor.click(lambda i: label_and_next("נדרש תיקון קל", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
+            btn_major.click(lambda i: label_and_next("נדרש תיקון משמעותי", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
+
+        with gr.Tab("📊 Research Analytics & Statistics Dashboard"):
+            gr.Markdown("## 📊 Research Analytics & Statistical Evaluation Dashboard")
+            gr.Markdown("Key statistical findings from the multi-modal acoustic, alignment, and machine learning models:")
+
+            with gr.Row():
+                gr.Textbox(value="69.29% (F1: 74.67%)", label="🏆 Best Model Accuracy (SVM RBF)", interactive=False)
+                gr.Textbox(value="38.83% (CER: 37.60%)", label="📉 Global Word Error Rate (WER)", interactive=False)
+                gr.Textbox(value="25.4% vs. 3.4%", label="🗣️ Learner Disfluency Preservation (Whisper vs. ChatGPT)", interactive=False)
+                gr.Textbox(value="Match_Confidence (25.2%)", label="💡 Top Predictive Feature (XGBoost)", interactive=False)
+
+            with gr.Row():
+                with gr.Column():
+                    gr.Markdown("### 🏆 Machine Learning Benchmark (5-Fold Stratified CV)")
+                    models_df = pd.DataFrame([
+                        {"Algorithm": "Support Vector Machine (SVM)", "Accuracy (%)": "69.29%", "F1-Score (%)": "74.67%", "Status": "Leader 🥇"},
+                        {"Algorithm": "Logistic Regression", "Accuracy (%)": "68.29%", "F1-Score (%)": "72.07%", "Status": "Baseline 🥈"},
+                        {"Algorithm": "XGBoost Classifier", "Accuracy (%)": "63.48%", "F1-Score (%)": "68.08%", "Status": "Top Tree 🥉"},
+                        {"Algorithm": "Random Forest", "Accuracy (%)": "61.57%", "F1-Score (%)": "66.93%", "Status": "Ensemble"},
+                        {"Algorithm": "Neural Network (MLP)", "Accuracy (%)": "58.57%", "F1-Score (%)": "58.92%", "Status": "Deep Learning"}
+                    ])
+                    gr.Dataframe(models_df, interactive=False)
+
+                with gr.Column():
+                    gr.Markdown("### 📊 Classical ASR Quality Breakdown (WER & CER)")
+                    asr_df = pd.DataFrame([
+                        {"Human Tag": "תקין (Valid)", "Sample Count (N)": 45, "WER (%)": "31.10%", "CER (%)": "31.00%"},
+                        {"Human Tag": "נדרש תיקון קל", "Sample Count (N)": 29, "WER (%)": "33.70%", "CER (%)": "45.82%"},
+                        {"Human Tag": "נדרש תיקון משמעותי", "Sample Count (N)": 30, "WER (%)": "48.23%", "CER (%)": "39.54%"},
+                        {"Human Tag": "ממוצע כולל (Global)", "Sample Count (N)": 104, "WER (%)": "38.83%", "CER (%)": "37.60%"}
+                    ])
+                    gr.Dataframe(asr_df, interactive=False)
+
+            gr.Markdown("### 📈 Publication Figures for Report")
+            with gr.Row():
+                if os.path.exists("figures/fig1_model_benchmark.png"):
+                    gr.Image("figures/fig1_model_benchmark.png", label="Figure 1: 5-Model Benchmark")
+                if os.path.exists("figures/fig2_confusion_matrix.png"):
+                    gr.Image("figures/fig2_confusion_matrix.png", label="Figure 2: Confusion Matrix (SVM)")
+            with gr.Row():
+                if os.path.exists("figures/fig3_feature_importance.png"):
+                    gr.Image("figures/fig3_feature_importance.png", label="Figure 3: Feature Importance (XGBoost)")
+                if os.path.exists("figures/fig4_research_insights.png"):
+                    gr.Image("figures/fig4_research_insights.png", label="Figure 4: Research Insights (AI vs. Human & Timeline)")
+
 
 if __name__ == "__main__":
     app.launch(server_name="127.0.0.1", server_port=7860, debug=True)
