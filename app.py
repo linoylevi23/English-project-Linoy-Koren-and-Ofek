@@ -100,18 +100,51 @@ def label_and_next(label, idx):
     next_idx = idx + 1
     return get_row_data(next_idx) + (next_idx,)
 
+from dashboard_sections import (
+    get_header_and_kpis_html,
+    get_student_progression_html,
+    get_models_html,
+    get_asr_html,
+    get_conditions_html,
+    get_features_html,
+    get_gallery_html
+)
+
 custom_css = """
 #tagging-tab {
     direction: ltr !important;
     text-align: left !important;
 }
+#tagging-tab * {
+    direction: ltr !important;
+}
 #dashboard-tab {
     direction: rtl !important;
     text-align: right !important;
 }
-.dashboard-root {
+#dashboard-tab .tabitem {
     direction: rtl !important;
     text-align: right !important;
+}
+#dashboard-subtabs .tab-nav {
+    direction: rtl !important;
+    display: flex !important;
+    gap: 8px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    padding-bottom: 6px !important;
+}
+#dashboard-subtabs .tab-nav button {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    padding: 10px 16px !important;
+    transition: all 0.15s ease-in-out !important;
+}
+#dashboard-subtabs .tab-nav button.selected {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
 }
 """
 
@@ -142,12 +175,20 @@ with gr.Blocks(title="English Speech Quality System & Analytics Dashboard") as a
             btn_major.click(lambda i: label_and_next("נדרש תיקון משמעותי", i), inputs=[idx_state], outputs=[chatgpt_box, whisper_box, audio_player, prog_text, file_info, idx_state])
 
         with gr.Tab("📊 Research Analytics & Statistics Dashboard", elem_id="dashboard-tab"):
-            dashboard_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard.html")
-            dashboard_html = ""
-            if os.path.exists(dashboard_path):
-                with open(dashboard_path, "r", encoding="utf-8") as f:
-                    dashboard_html = f.read()
-            gr.HTML(dashboard_html)
+            gr.HTML(get_header_and_kpis_html())
+            with gr.Tabs(elem_id="dashboard-subtabs"):
+                with gr.Tab("📈 מגמת שיפור פר אדם ולאורך המפגשים"):
+                    gr.HTML(get_student_progression_html())
+                with gr.Tab("🤖 השוואת 5 מודלי ML ומטריצת בלבול"):
+                    gr.HTML(get_models_html())
+                with gr.Tab("📊 מדדי איכות ASR ושימור טעויות לומד (WER / CER)"):
+                    gr.HTML(get_asr_html())
+                with gr.Tab("👥 שיחות AI מול מורה אנושי (Human)"):
+                    gr.HTML(get_conditions_html())
+                with gr.Tab("💡 דירוג חשיבות 9 הפיצ'רים (Explainable AI)"):
+                    gr.HTML(get_features_html())
+                with gr.Tab("🖼️ תרשימים מדעיים לדוח (Figures)"):
+                    gr.HTML(get_gallery_html())
 
 
 if __name__ == "__main__":
