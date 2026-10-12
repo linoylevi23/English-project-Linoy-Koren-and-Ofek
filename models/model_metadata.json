@@ -1,0 +1,26 @@
+{
+  "features": [
+    "Match_Confidence",
+    "Speech_Volume",
+    "Noise_Level",
+    "Speech_Rate",
+    "Silence_Before_Turn",
+    "Hesitations_Count",
+    "Missing_Words",
+    "Different_Words",
+    "Has_Overlap"
+  ],
+  "last_trained": "2026-09-19 21:55:11",
+  "training_samples": 732,
+  "metrics": {
+    "timestamp": "2026-09-19 21:55:11",
+    "iteration": 1,
+    "samples": 732,
+    "binary_accuracy": 0.9249,
+    "binary_f1": 0.9421,
+    "3class_accuracy": 0.9194,
+    "3class_f1_macro": 0.7951,
+    "human_reviewed_count": 0,
+    "jev_uniform_count": 732
+  }
+}

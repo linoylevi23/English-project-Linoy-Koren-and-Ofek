@@ -29,12 +29,18 @@ rm -f Audio Transcripts
 
 # Create symbolic links
 ln -s "$TARGET_DIR/Audio" Audio
-ln -s "$TARGET_DIR/Transcripts" Transcripts
+if [ -d "$TARGET_DIR/Transcripts UPDATED" ]; then
+    ln -s "$TARGET_DIR/Transcripts UPDATED" Transcripts
+    TRANSCRIPTS_SRC="$TARGET_DIR/Transcripts UPDATED"
+else
+    ln -s "$TARGET_DIR/Transcripts" Transcripts
+    TRANSCRIPTS_SRC="$TARGET_DIR/Transcripts"
+fi
 
 echo ""
 echo "🎉 Connection successful!"
 echo "   Audio       -> $TARGET_DIR/Audio"
-echo "   Transcripts -> $TARGET_DIR/Transcripts"
+echo "   Transcripts -> $TRANSCRIPTS_SRC"
 echo ""
 echo "You can now run:"
 echo "   ./run_app.sh    # To start the tagging web app"

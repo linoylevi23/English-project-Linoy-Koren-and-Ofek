@@ -5,8 +5,8 @@ import base64
 DASHBOARD_CSS = """
 <style>
   .dash-panel {
-    direction: rtl !important;
-    text-align: right !important;
+    direction: ltr !important;
+    text-align: left !important;
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 16px;
@@ -25,8 +25,8 @@ DASHBOARD_CSS = """
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
-    direction: rtl !important;
-    text-align: right !important;
+    direction: ltr !important;
+    text-align: left !important;
   }
   .dash-title {
     font-size: 16px;
@@ -66,7 +66,7 @@ DASHBOARD_CSS = """
   }
   .dash-alert {
     background-color: #eff6ff;
-    border-right: 4px solid #2563eb;
+    border-left: 4px solid #2563eb;
     padding: 12px 14px;
     border-radius: 8px;
     font-size: 12px;
@@ -76,20 +76,20 @@ DASHBOARD_CSS = """
   }
   .dash-alert-emerald {
     background-color: #ecfdf5;
-    border-right: 4px solid #059669;
+    border-left: 4px solid #059669;
     color: #064e3b;
   }
   .dash-alert-amber {
     background-color: #fffbeb;
-    border-right: 4px solid #d97706;
+    border-left: 4px solid #d97706;
     color: #78350f;
   }
   .dash-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 12px;
-    text-align: right;
-    direction: rtl;
+    text-align: left;
+    direction: ltr;
   }
   .dash-table th {
     background-color: #f8fafc;
@@ -176,34 +176,34 @@ def get_base64_image(rel_path):
 def get_header_and_kpis_html():
     return f"""
 {DASHBOARD_CSS}
-<div style="direction: rtl; text-align: right; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+<div style="direction: ltr; text-align: left; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0; gap: 16px;">
     <div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <span style="font-size: 28px;">🎙️</span>
-        <h1 style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0;">דשבורד מחקרי: מערכת בקרת איכות תמלול ו-Machine Learning</h1>
+        <h1 style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0;">Research Dashboard: Speech Quality Assurance & Machine Learning Pipeline</h1>
       </div>
       <div style="font-size: 13px; color: #64748b; margin-top: 4px;">
-        פרויקט מחקרי: ניתוח שיחות לומדי אנגלית (ChatGPT vs. Whisper), שימור טעויות לומד וסיווג אוטומטי
+        Research Project: English Learner Conversation Analysis (ChatGPT vs. Whisper), Learner Error Preservation & Automated Quality Classification
       </div>
     </div>
     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <span class="dash-badge dash-badge-success" style="padding: 6px 12px; font-size: 12px;">● מסד נתונים חי ומסונכרן (Drive)</span>
-      <span class="dash-badge dash-badge-info" style="padding: 6px 12px; font-size: 12px;">742 תורים סה"כ | 104 מתויגים</span>
+      <span class="dash-badge dash-badge-success" style="padding: 6px 12px; font-size: 12px;">● Live & Synced Database (Drive)</span>
+      <span class="dash-badge dash-badge-info" style="padding: 6px 12px; font-size: 12px;">742 Total Turns | 104 Verified</span>
     </div>
   </div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 20px;">
     <div class="dash-panel" style="padding: 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 11px; font-weight: 700; color: #2563eb; text-transform: uppercase;">דיוק מודל מוביל (SVM)</span>
+        <span style="font-size: 11px; font-weight: 700; color: #2563eb; text-transform: uppercase;">Top Model Accuracy (SVM)</span>
         <span style="font-size: 18px;">🏆</span>
       </div>
       <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 8px;">
         <span style="font-size: 26px; font-weight: 800; color: #0f172a;">69.29%</span>
         <span class="dash-badge dash-badge-success">F1: 74.67%</span>
       </div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">5-Fold Stratified CV מול תיוג אנושי</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">5-Fold Stratified CV vs. Human Ground Truth</div>
     </div>
 
     <div class="dash-panel" style="padding: 16px; margin-bottom: 0;">
@@ -215,31 +215,31 @@ def get_header_and_kpis_html():
         <span style="font-size: 26px; font-weight: 800; color: #0f172a;">38.83%</span>
         <span class="dash-badge dash-badge-info">CER: 37.6%</span>
       </div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">בתקין: 31.1% | בנדרש תיקון: 48.2%</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">Valid: 31.1% | Needs Correction: 48.2%</div>
     </div>
 
     <div class="dash-panel" style="padding: 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 11px; font-weight: 700; color: #d97706; text-transform: uppercase;">שימור טעויות לומד (Whisper)</span>
+        <span style="font-size: 11px; font-weight: 700; color: #d97706; text-transform: uppercase;">Learner Error Preservation (Whisper)</span>
         <span style="font-size: 18px;">🗣️</span>
       </div>
       <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 8px;">
         <span style="font-size: 26px; font-weight: 800; color: #0f172a;">25.4%</span>
-        <span class="dash-badge dash-badge-amber">פי 7.5 מ-ChatGPT</span>
+        <span class="dash-badge dash-badge-amber">7.5x higher than ChatGPT</span>
       </div>
       <div style="font-size: 11px; color: #64748b; margin-top: 6px;">Whisper: 15/59 | ChatGPT: 2/59 (3.4%)</div>
     </div>
 
     <div class="dash-panel" style="padding: 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 11px; font-weight: 700; color: #059669; text-transform: uppercase;">הפיצ'ר המשפיע ביותר</span>
+        <span style="font-size: 11px; font-weight: 700; color: #059669; text-transform: uppercase;">Top Predictive Feature</span>
         <span style="font-size: 18px;">💡</span>
       </div>
       <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 8px;">
         <span style="font-size: 20px; font-weight: 800; color: #0f172a;">Match_Confidence</span>
         <span class="dash-badge dash-badge-success">25.24%</span>
       </div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">קורלציה בין אות אקוסטי לטקסט</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">Correlation Between Acoustic Signal & Text</div>
     </div>
   </div>
 </div>
@@ -252,15 +252,15 @@ def get_student_progression_html():
   <!-- Student 1: Lilo -->
   <div class="dash-panel">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-      <div style="font-size: 14px; font-weight: 700; color: #0f172a;">👩‍🎓 לומדת: Lilo (328 תורי דיבור סה"כ)</div>
-      <span class="dash-badge dash-badge-success">מגמת שיפור: +10.2% 🚀</span>
+      <div style="font-size: 14px; font-weight: 700; color: #0f172a;">👩‍🎓 Learner: Lilo (328 Total Speech Turns)</div>
+      <span class="dash-badge dash-badge-success">Improvement Trend: +10.2% 🚀</span>
     </div>
-    <div class="dash-desc">מעקב אחר ציוני התאמה (Match Confidence), קצב דיבור והשתהויות לאורך 4 מפגשים:</div>
+    <div class="dash-desc">Tracking Match Confidence, speech rate, and hesitations across 4 sessions:</div>
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 1 (Baseline)</span>
-        <span style="font-weight: 700; color: #64748b;">ביטחון 0.767 | קצב 3.59 w/s | 0.45 השתהויות לתור</span>
+        <span>Session 1 (Baseline)</span>
+        <span style="font-weight: 700; color: #64748b;">Confidence: 0.767 | Rate: 3.59 w/s | 0.45 Hesitations per turn</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 76.7%; background-color: #94a3b8;"></div>
@@ -269,8 +269,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 2</span>
-        <span style="font-weight: 700; color: #64748b;">ביטחון 0.644 | קצב 4.21 w/s | 0.08 השתהויות לתור</span>
+        <span>Session 2</span>
+        <span style="font-weight: 700; color: #64748b;">Confidence: 0.644 | Rate: 4.21 w/s | 0.08 Hesitations per turn</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 64.4%; background-color: #cbd5e1;"></div>
@@ -279,8 +279,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 3</span>
-        <span style="font-weight: 700; color: #64748b;">ביטחון 0.714 | קצב 3.85 w/s | 0.10 השתהויות לתור</span>
+        <span>Session 3</span>
+        <span style="font-weight: 700; color: #64748b;">Confidence: 0.714 | Rate: 3.85 w/s | 0.10 Hesitations per turn</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 71.4%; background-color: #38bdf8;"></div>
@@ -289,8 +289,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 4 (מפגש סיום)</span>
-        <span style="font-weight: 800; color: #059669;">ביטחון 0.868 | קצב 2.21 w/s | 0.22 השתהויות לתור (+10.2% שיפור)</span>
+        <span>Session 4 (Final Session)</span>
+        <span style="font-weight: 800; color: #059669;">Confidence: 0.868 | Rate: 2.21 w/s | 0.22 Hesitations per turn (+10.2% Improvement)</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 86.8%; background-color: #059669;"></div>
@@ -298,22 +298,22 @@ def get_student_progression_html():
     </div>
 
     <div class="dash-alert dash-alert-emerald">
-      <strong>ניתוח אישי עבור Lilo:</strong> הלומדת הפגינה שיפור עקבי בשטף הדיבור והפחתה בחצי של מילות המילוי והגמגומים. איכות התמלול האקוסטי טיפסה מ-0.767 ל-0.868, מה שמצביע על התקדמות מובהקת ברכישת השפה.
+      <strong>Personal Analysis for Lilo:</strong> The learner demonstrated steady improvement in speech fluency and cut filler words and stutters in half. Acoustic transcription quality rose from 0.767 to 0.868, indicating marked second language acquisition (SLA) progress.
     </div>
   </div>
 
   <!-- Student 2: Thomas Shelby -->
   <div class="dash-panel">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-      <div style="font-size: 14px; font-weight: 700; color: #0f172a;">👨‍🎓 לומד: Thomas Shelby (414 תורי דיבור סה"כ)</div>
-      <span class="dash-badge dash-badge-amber">השפעת קצב הדיבור על ASR</span>
+      <div style="font-size: 14px; font-weight: 700; color: #0f172a;">👨‍🎓 Learner: Thomas Shelby (414 Total Speech Turns)</div>
+      <span class="dash-badge dash-badge-amber">Impact of Speech Rate on ASR</span>
     </div>
-    <div class="dash-desc">מעקב אחר ציוני התאמה וקצב דיבור קיצוני לאורך 4 מפגשים:</div>
+    <div class="dash-desc">Tracking Match Confidence and extreme speech rate across 4 sessions:</div>
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 1</span>
-        <span style="font-weight: 700; color: #0284c7;">ביטחון 0.801 | קצב דיבור מתון: 3.56 מילים/שנייה</span>
+        <span>Session 1</span>
+        <span style="font-weight: 700; color: #0284c7;">Confidence: 0.801 | Moderate rate: 3.56 words/sec</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 80.1%; background-color: #0284c7;"></div>
@@ -322,8 +322,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 2 (שיא איכות)</span>
-        <span style="font-weight: 700; color: #059669;">ביטחון 0.845 | קצב 3.59 מילים/שנייה</span>
+        <span>Session 2 (Peak Quality)</span>
+        <span style="font-weight: 700; color: #059669;">Confidence: 0.845 | Rate: 3.59 words/sec</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 84.5%; background-color: #059669;"></div>
@@ -332,8 +332,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 3</span>
-        <span style="font-weight: 700; color: #d97706;">ביטחון 0.608 | קצב מואץ: 8.18 מילים/שנייה ⚠️</span>
+        <span>Session 3</span>
+        <span style="font-weight: 700; color: #d97706;">Confidence: 0.608 | Accelerated rate: 8.18 words/sec ⚠️</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 60.8%; background-color: #f59e0b;"></div>
@@ -342,8 +342,8 @@ def get_student_progression_html():
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
-        <span>מפגש 4</span>
-        <span style="font-weight: 700; color: #dc2626;">ביטחון 0.592 | קצב מואץ מאוד: 8.43 מילים/שנייה</span>
+        <span>Session 4</span>
+        <span style="font-weight: 700; color: #dc2626;">Confidence: 0.592 | Highly accelerated rate: 8.43 words/sec</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 59.2%; background-color: #ef4444;"></div>
@@ -351,57 +351,57 @@ def get_student_progression_html():
     </div>
 
     <div class="dash-alert dash-alert-amber">
-      <strong>תובנה קריטית לשאלת מחקר #7:</strong> המקרה של תומאס שלבי מוכיח שעלייה חדה בקצב הדיבור (מ-3.5 מילים/שנייה ליותר מ-8 מילים/שנייה) גורמת לבליעת הברות ושגיאות תמלול של מודל ה-ASR, מה שמסביר מדוע <code>Speech_Rate</code> הוא הפיצ'ר האקוסטי החשוב ביותר במודל!
+      <strong>Critical Insight for Research Question #7:</strong> Thomas Shelby's case demonstrates that a sharp surge in speech rate (from 3.5 words/sec to over 8 words/sec) causes syllable dropping and ASR transcription errors, explaining why <code>Speech_Rate</code> is the primary acoustic predictor in our model!
     </div>
   </div>
 </div>
 
 <!-- Comparison Table -->
 <div class="dash-panel" style="margin-top: 16px;">
-  <div class="dash-title">📋 טבלת השוואה מסכמת: ביצועי לומדים לאורך ציר הזמן (Final Master Database)</div>
+  <div class="dash-title">📋 Summary Comparison Table: Longitudinal Learner Progression (Final Master Database)</div>
   <table class="dash-table">
     <thead>
       <tr>
-        <th>שם הלומד / Student</th>
-        <th>מפגשים</th>
-        <th>ביטחון מפגש 1 (Baseline)</th>
-        <th>ביטחון מפגש סיום</th>
-        <th>שינוי בביטחון</th>
-        <th>קצב דיבור ממוצע</th>
-        <th>סה"כ תורים</th>
-        <th>מסקנה מחקרית</th>
+        <th>Learner Name</th>
+        <th>Sessions</th>
+        <th>Session 1 Baseline Confidence</th>
+        <th>Final Session Confidence</th>
+        <th>Confidence Delta</th>
+        <th>Average Speech Rate</th>
+        <th>Total Turns</th>
+        <th>Research Finding</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td style="font-weight: 700; color: #065f46;">Lilo</td>
-        <td>1 עד 4</td>
+        <td>1 to 4</td>
         <td>0.767</td>
         <td style="font-weight: 700; color: #059669;">0.868</td>
         <td style="font-weight: 700; color: #059669;">+10.2% 📈</td>
         <td>3.43 w/s</td>
         <td>328</td>
-        <td>שיפור מובהק בשטף וירידה בגמגומים</td>
+        <td>Marked fluency gains, 50% drop in disfluencies</td>
       </tr>
       <tr>
         <td style="font-weight: 700; color: #1e3a8a;">Thomas Shelby</td>
-        <td>1 עד 4</td>
+        <td>1 to 4</td>
         <td>0.801</td>
         <td style="font-weight: 700; color: #dc2626;">0.592</td>
         <td style="font-weight: 700; color: #dc2626;">-21.0% 📉</td>
         <td>5.76 w/s</td>
         <td>414</td>
-        <td>קצב דיבור מואץ יתר על המידה (מעל 8 w/s) פגע בתמלול</td>
+        <td>Excessive speech rate (> 8 w/s) degraded transcription quality</td>
       </tr>
       <tr style="background: #f8fafc; font-weight: 800;">
-        <td>ממוצע כולל כלל השיחות</td>
-        <td>1 עד 4</td>
+        <td>Overall Session Mean</td>
+        <td>1 to 4</td>
         <td>0.740</td>
         <td style="color: #2563eb;">0.860</td>
-        <td style="color: #2563eb;">+12.0% ממוצע 🚀</td>
+        <td style="color: #2563eb;">+12.0% Mean Improvement 🚀</td>
         <td>4.59 w/s</td>
         <td>742</td>
-        <td>מגמת שיפור כללית מובהקת בשיחות AI מובנות</td>
+        <td>Significant general upward trend in structured AI conversations</td>
       </tr>
     </tbody>
   </table>
@@ -413,8 +413,8 @@ def get_models_html():
 {DASHBOARD_CSS}
 <div class="dash-two-col">
   <div class="dash-panel">
-    <div class="dash-title">🏆 השוואת ביצועים בין 5 אלגוריתמים (משימה A: סיווג בינארי)</div>
-    <div class="dash-desc">5-Fold Stratified Cross-Validation על 104 שורות מתויגות עם 9 פיצ'רים מולטי-מודאליים:</div>
+    <div class="dash-title">🏆 Performance Comparison Across 5 Algorithms (Task A: Binary Classification)</div>
+    <div class="dash-desc">5-Fold Stratified Cross-Validation across 104 labeled turns with 9 multimodal features:</div>
 
     <div class="dash-progress-group">
       <div class="dash-progress-header">
@@ -467,39 +467,39 @@ def get_models_html():
     </div>
 
     <div class="dash-alert">
-      <strong>💡 תובנה מדעית מרכזית:</strong> אלגוריתם SVM מוביל בדיוק וב-F1 Score מכיוון שהוא מייצר שולי הפרדה רחבים (Margins) ומונע Overfitting במדגמים קומפקטיים. ככל שיתווספו תיוגים, XGBoost ו-Random Forest צפויים להוביל ולעבור 80%+.
+      <strong>💡 Key Scientific Insight:</strong> The SVM algorithm achieved top performance in accuracy and F1 score due to its wide margin separation boundaries, avoiding overfitting on compact datasets. As more ground-truth annotations are collected, XGBoost and Random Forest are expected to dominate above 80%+.
     </div>
   </div>
 
   <div class="dash-panel">
-    <div class="dash-title">🎯 מטריצת בלבול (Confusion Matrix - SVM)</div>
-    <div class="dash-desc">פירוק החלטות המודל המוביל מול התיוג האנושי האמיתי בקבוצת המבחן המרובדת:</div>
+    <div class="dash-title">🎯 Confusion Matrix (SVM)</div>
+    <div class="dash-desc">Decomposition of model decisions versus true human ground truth in the stratified test split:</div>
 
     <div class="dash-cm-grid">
       <div class="dash-cm-cell" style="background-color: #ecfdf5; border-color: #a7f3d0;">
-        <div style="font-size: 11px; font-weight: 700; color: #065f46;">True Negative (תקין)</div>
+        <div style="font-size: 11px; font-weight: 700; color: #065f46;">True Negative (Valid)</div>
         <div style="font-size: 24px; font-weight: 800; color: #064e3b; margin: 4px 0;">29</div>
-        <div style="font-size: 10px; color: #047857;">64.4% זוהו נכון כתקינים</div>
+        <div style="font-size: 10px; color: #047857;">64.4% correctly identified as Valid</div>
       </div>
       <div class="dash-cm-cell" style="background-color: #fffbeb; border-color: #fde68a;">
-        <div style="font-size: 11px; font-weight: 700; color: #92400e;">התרעות שווא (False Positive)</div>
+        <div style="font-size: 11px; font-weight: 700; color: #92400e;">False Positive (False Alarms)</div>
         <div style="font-size: 24px; font-weight: 800; color: #78350f; margin: 4px 0;">16</div>
-        <div style="font-size: 10px; color: #b45309;">סווגו כתיקון, אך תקינים</div>
+        <div style="font-size: 10px; color: #b45309;">Predicted Needs Review, but actually Valid</div>
       </div>
       <div class="dash-cm-cell" style="background-color: #fef2f2; border-color: #fecaca;">
-        <div style="font-size: 11px; font-weight: 700; color: #991b1b;">פספוסים (False Negative)</div>
+        <div style="font-size: 11px; font-weight: 700; color: #991b1b;">False Negative (Missed Errors)</div>
         <div style="font-size: 24px; font-weight: 800; color: #7f1d1d; margin: 4px 0;">16</div>
-        <div style="font-size: 10px; color: #b91c1c;">סווגו כתקין, אך נדרש תיקון</div>
+        <div style="font-size: 10px; color: #b91c1c;">Predicted Valid, but Needs Review</div>
       </div>
       <div class="dash-cm-cell" style="background-color: #eff6ff; border-color: #bfdbfe;">
-        <div style="font-size: 11px; font-weight: 700; color: #1e40af;">True Positive (שגיאות שנתפסו)</div>
+        <div style="font-size: 11px; font-weight: 700; color: #1e40af;">True Positive (Caught Errors)</div>
         <div style="font-size: 24px; font-weight: 800; color: #1e3a8a; margin: 4px 0;">43</div>
-        <div style="font-size: 10px; color: #2563eb;">72.9% מהשגיאות אותרו בהצלחה!</div>
+        <div style="font-size: 10px; color: #2563eb;">72.9% of errors successfully detected!</div>
       </div>
     </div>
 
     <div class="dash-alert dash-alert-emerald" style="margin-top: 20px;">
-      <strong>Recall בשגיאות: 72.9%</strong> — המודל מאתר קרוב ל-3 מתוך כל 4 שורות פגומות, מה שחוסך מעל 70% מזמן הבדיקה הידנית של הבודק האנושי!
+      <strong>Error Recall: 72.9%</strong> — The model detects nearly 3 out of every 4 defective turns, saving over 70% of manual auditing time for human annotators!
     </div>
   </div>
 </div>
@@ -510,81 +510,81 @@ def get_asr_html():
 {DASHBOARD_CSS}
 <div class="dash-two-col">
   <div class="dash-panel">
-    <div class="dash-title">📊 פירוק מדדי ASR לפי קטגוריית איכות</div>
-    <div class="dash-desc">חישוב Word Error Rate (WER) ו-Character Error Rate (CER) עבור 1,754 מילים מול תיוג איכות:</div>
+    <div class="dash-title">📊 ASR Quality Metrics Breakdown by Ground-Truth Category</div>
+    <div class="dash-desc">Word Error Rate (WER) and Character Error Rate (CER) computed over 1,754 words vs. quality labels:</div>
 
     <table class="dash-table">
       <thead>
         <tr>
-          <th>קטגוריה</th>
-          <th>מדגם (N)</th>
+          <th>Category</th>
+          <th>Sample Size (N)</th>
           <th>WER (%)</th>
           <th>CER (%)</th>
-          <th>סטטוס איכות</th>
+          <th>Quality Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="font-weight: 700; color: #065f46;">תקין (Valid)</td>
+          <td style="font-weight: 700; color: #065f46;">Valid</td>
           <td>45</td>
           <td style="font-weight: 700;">31.10%</td>
           <td>31.00%</td>
-          <td><span class="dash-badge dash-badge-success">איכות גבוהה</span></td>
+          <td><span class="dash-badge dash-badge-success">High Quality</span></td>
         </tr>
         <tr>
-          <td style="font-weight: 700; color: #92400e;">נדרש תיקון קל</td>
+          <td style="font-weight: 700; color: #92400e;">Minor Correction Required</td>
           <td>29</td>
           <td style="font-weight: 700;">33.70%</td>
           <td>45.82%</td>
-          <td><span class="dash-badge dash-badge-amber">איכות בינונית</span></td>
+          <td><span class="dash-badge dash-badge-amber">Moderate Quality</span></td>
         </tr>
         <tr>
-          <td style="font-weight: 700; color: #991b1b;">נדרש תיקון משמעותי</td>
+          <td style="font-weight: 700; color: #991b1b;">Major Correction Required</td>
           <td>30</td>
           <td style="font-weight: 700; color: #dc2626;">48.23%</td>
           <td>39.54%</td>
-          <td><span class="dash-badge dash-badge-red">פער חריף</span></td>
+          <td><span class="dash-badge dash-badge-red">Critical Divergence</span></td>
         </tr>
         <tr style="background-color: #f8fafc; font-weight: 800;">
-          <td>ממוצע כולל (Global)</td>
+          <td>Global Weighted Aggregate</td>
           <td>104</td>
           <td style="color: #2563eb;">38.83%</td>
           <td style="color: #2563eb;">37.60%</td>
-          <td>שקלול מלא</td>
+          <td>Full Weighted Aggregate</td>
         </tr>
       </tbody>
     </table>
 
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; text-align: center;">
       <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <div style="font-size: 11px; color: #64748b;">השמטות (Deletions)</div>
+        <div style="font-size: 11px; color: #64748b;">Deletions</div>
         <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">29.30%</div>
-        <div style="font-size: 10px; color: #94a3b8;">(514 מילים)</div>
+        <div style="font-size: 10px; color: #94a3b8;">(514 words)</div>
       </div>
       <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <div style="font-size: 11px; color: #64748b;">החלפות (Substitutions)</div>
+        <div style="font-size: 11px; color: #64748b;">Substitutions</div>
         <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">6.44%</div>
-        <div style="font-size: 10px; color: #94a3b8;">(113 מילים)</div>
+        <div style="font-size: 10px; color: #94a3b8;">(113 words)</div>
       </div>
       <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <div style="font-size: 11px; color: #64748b;">הוספות (Insertions)</div>
+        <div style="font-size: 11px; color: #64748b;">Insertions</div>
         <div style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">3.08%</div>
-        <div style="font-size: 10px; color: #94a3b8;">(54 מילים)</div>
+        <div style="font-size: 10px; color: #94a3b8;">(54 words)</div>
       </div>
     </div>
   </div>
 
   <div class="dash-panel">
-    <div class="dash-title">🗣️ שימור טעויות הלומד והשתהויות (עמוד 7 בהנחיות)</div>
+    <div class="dash-title">🗣️ Learner Error & Disfluency Preservation (Guidelines p. 7)</div>
     <div class="dash-desc">
-      בדיקת הנוסחה: <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #2563eb;">Learner Error Preservation Rate</code> מול הנטייה של מודלי שפה לנרמל ולתקן דיבור עילג:
+      Evaluating: <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #2563eb;">Learner Error Preservation Rate</code> vs. LLM tendency to normalize and smooth imperfect speech:
     </div>
 
     <div style="margin: 20px 0;">
       <div class="dash-progress-group">
         <div class="dash-progress-header">
-          <span style="color: #0d9488; font-weight: 700;">תמלול אקוסטי (Whisper)</span>
-          <span style="color: #0d9488; font-weight: 800;">25.4% (15 מתוך 59 תורים)</span>
+          <span style="color: #0d9488; font-weight: 700;">Acoustic Transcript (Whisper)</span>
+          <span style="color: #0d9488; font-weight: 800;">25.4% (15 of 59 turns)</span>
         </div>
         <div class="dash-progress-track" style="height: 16px;">
           <div class="dash-progress-fill" style="width: 25.4%; background-color: #0d9488;"></div>
@@ -593,8 +593,8 @@ def get_asr_html():
 
       <div class="dash-progress-group" style="margin-top: 14px;">
         <div class="dash-progress-header">
-          <span style="color: #64748b; font-weight: 700;">תמלול טקסטואלי (ChatGPT)</span>
-          <span style="color: #64748b; font-weight: 800;">3.4% (2 מתוך 59 תורים)</span>
+          <span style="color: #64748b; font-weight: 700;">Textual Transcript (ChatGPT)</span>
+          <span style="color: #64748b; font-weight: 800;">3.4% (2 of 59 turns)</span>
         </div>
         <div class="dash-progress-track" style="height: 16px;">
           <div class="dash-progress-fill" style="width: 3.4%; background-color: #f87171;"></div>
@@ -603,8 +603,8 @@ def get_asr_html():
     </div>
 
     <div class="dash-alert dash-alert-emerald">
-      <strong>💡 תשובה מובהקת לשאלת מחקר #2:</strong><br>
-      בעוד ש-ChatGPT מחק או תיקן באופן אוטומטי כמעט את כל ההשתהויות והגמגומים של התלמיד (96.6% נמחקו), מודל Whisper האקוסטי הצליח לשמר את מילות המילוי ("um", "uh", חזרות ותיקונים עצמיים) בשיעור גבוה <strong>פי 7.5</strong>!
+      <strong>💡 Definitive Answer to Research Question #2:</strong><br>
+      While ChatGPT automatically deleted or normalized virtually all learner hesitations and stutters (96.6% erased), the acoustic Whisper model preserved natural conversational fillers ("um", "uh", repetitions, self-repairs) at a rate <strong>7.5x higher</strong>!
     </div>
   </div>
 </div>
@@ -615,58 +615,58 @@ def get_conditions_html():
 {DASHBOARD_CSS}
 <div class="dash-two-col">
   <div class="dash-panel">
-    <div class="dash-title">🤖 שאלת מחקר #5: שיחות עם בוט AI מול מורה אנושי</div>
-    <div class="dash-desc">השוואת רמת הדיוק וביטחון ההתאמה (Match Confidence) בין שני תנאי הלמידה:</div>
+    <div class="dash-title">🤖 Research Question #5: AI Bot vs. Human Teacher Conversations</div>
+    <div class="dash-desc">Comparing accuracy and Match Confidence across the two learning conditions:</div>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; text-align: center;">
       <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 16px;">
-        <div style="font-size: 12px; font-weight: 700; color: #1e40af;">שיחות מול בוט AI</div>
+        <div style="font-size: 12px; font-weight: 700; color: #1e40af;">Conversations with AI Bot</div>
         <div style="font-size: 28px; font-weight: 800; color: #1e3a8a; margin: 4px 0;">0.82</div>
-        <div style="font-size: 11px; color: #2563eb; font-weight: 600;">ציון התאמה ממוצע גבוה</div>
-        <div style="font-size: 10px; color: #64748b; margin-top: 2px;">דיבור איטי, מובנה וברור יותר</div>
+        <div style="font-size: 11px; color: #2563eb; font-weight: 600;">Higher Average Match Score</div>
+        <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Slower, structured, and clearer pacing</div>
       </div>
 
       <div style="background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 12px; padding: 16px;">
-        <div style="font-size: 12px; font-weight: 700; color: #6d28d9;">שיחות מול מורה אנושי</div>
+        <div style="font-size: 12px; font-weight: 700; color: #6d28d9;">Conversations with Human Teacher</div>
         <div style="font-size: 28px; font-weight: 800; color: #4c1d95; margin: 4px 0;">0.78</div>
-        <div style="font-size: 11px; color: #7c3aed; font-weight: 600;">ציון התאמה נמוך יותר</div>
-        <div style="font-size: 10px; color: #64748b; margin-top: 2px;">דיבור ספונטני, חפיפות וקצב מהיר</div>
+        <div style="font-size: 11px; color: #7c3aed; font-weight: 600;">Lower Average Match Score</div>
+        <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Spontaneous speech, overlaps & rapid tempo</div>
       </div>
     </div>
 
     <div class="dash-alert">
-      <strong>מסקנה:</strong> שיחות עם בוט AI מתאפיינות בדיבור מסודר יותר עם אפס חפיפות קוליות (<code>Overlap = 0</code>), מה שמוביל לתמלול נקי ומדויק יותר ב-4% בממוצע בהשוואה לשיחה עם מורה אנושי.
+      <strong>Conclusion:</strong> Conversations with an AI bot exhibit structured turns with zero vocal overlaps (<code>Overlap = 0</code>), yielding cleaner and 4% more accurate transcription on average compared to human teacher interactions.
     </div>
   </div>
 
   <div class="dash-panel">
-    <div class="dash-title">👥 השפעת סוג השיחה על מאפייני הדיבור</div>
-    <div class="dash-desc">השוואת זמני שתיקה ורמות רעש בין שני התנאים:</div>
+    <div class="dash-title">👥 Impact of Conversation Partner on Speech Characteristics</div>
+    <div class="dash-desc">Comparing pause durations, noise levels, and overlaps between conditions:</div>
     
     <table class="dash-table">
       <thead>
         <tr>
-          <th>תנאי למידה</th>
-          <th>שתיקה ממוצעת</th>
-          <th>רמת רעש (Noise Level)</th>
-          <th>חפיפות דיבור (Overlap)</th>
-          <th>דיוק ASR</th>
+          <th>Learning Condition</th>
+          <th>Average Silence</th>
+          <th>Noise Level (SNR)</th>
+          <th>Speech Overlap</th>
+          <th>ASR Accuracy</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="font-weight: 700; color: #1e40af;">בוט בינה מלאכותית (AI)</td>
-          <td>12.4 שניות</td>
-          <td>0.08 (שקט מאוד)</td>
-          <td>0.0% (אין חפיפה)</td>
-          <td style="font-weight: 700; color: #059669;">82.0% (גבוה)</td>
+          <td style="font-weight: 700; color: #1e40af;">Artificial Intelligence Bot (AI)</td>
+          <td>12.4 seconds</td>
+          <td>0.08 (Very Quiet)</td>
+          <td>0.0% (No Overlap)</td>
+          <td style="font-weight: 700; color: #059669;">82.0% (High)</td>
         </tr>
         <tr>
-          <td style="font-weight: 700; color: #6d28d9;">מורה אנושי (Human)</td>
-          <td>18.7 שניות</td>
-          <td>0.14 (רעשי רקע)</td>
-          <td>14.2% חפיפות דיבור</td>
-          <td style="font-weight: 700; color: #d97706;">78.0% (בינוני)</td>
+          <td style="font-weight: 700; color: #6d28d9;">Human Teacher</td>
+          <td>18.7 seconds</td>
+          <td>0.14 (Background Noise)</td>
+          <td>14.2% Overlap</td>
+          <td style="font-weight: 700; color: #d97706;">78.0% (Moderate)</td>
         </tr>
       </tbody>
     </table>
@@ -678,13 +678,13 @@ def get_features_html():
     return f"""
 {DASHBOARD_CSS}
 <div class="dash-panel">
-  <div class="dash-title">💡 ניתוח חשיבות הפיצ'רים (XGBoost Feature Importance)</div>
-  <div class="dash-desc">דירוג תרומת 9 הפיצ'רים המולטי-מודאליים (אקוסטיים וטקסטואליים) לקבלת ההחלטה האם שורת תמלול דורשת תיקון:</div>
+  <div class="dash-title">💡 Multimodal Feature Importance (XGBoost Feature Importance)</div>
+  <div class="dash-desc">Feature importance ranking of the 9 multimodal features (acoustic and textual) for classifying transcription error likelihood:</div>
 
   <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
     <div>
       <div class="dash-progress-header">
-        <span>1. Match_Confidence (ציון התאמה בין Whisper ל-ChatGPT)</span>
+        <span>1. Match_Confidence (Alignment score between Whisper and ChatGPT)</span>
         <span style="color: #2563eb; font-weight: 800;">25.24%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -694,7 +694,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>2. Speech_Rate (קצב הדיבור במילים לשנייה)</span>
+        <span>2. Speech_Rate (Speech tempo in words per second)</span>
         <span style="color: #4f46e5; font-weight: 800;">15.86%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -704,7 +704,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>3. Hesitations_Count (מילות מילוי "um", "uh", חזרות ותיקונים)</span>
+        <span>3. Hesitations_Count (Filler words like "um", "uh", repetitions, and self-repairs)</span>
         <span style="color: #0d9488; font-weight: 800;">15.18%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -714,7 +714,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>4. Silence_Before_Turn (שתיקה לפני תחילת דיבור)</span>
+        <span>4. Silence_Before_Turn (Pause duration before speech turn starts)</span>
         <span style="color: #059669; font-weight: 800;">13.74%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -724,7 +724,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>5. Noise_Level (רמת רעש רקע ביחס לאות - SNR)</span>
+        <span>5. Noise_Level (Background noise level relative to signal - SNR)</span>
         <span style="color: #d97706; font-weight: 800;">12.05%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -734,7 +734,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>6. Speech_Volume (עוצמת האות האקוסטי ב-dB RMS)</span>
+        <span>6. Speech_Volume (Acoustic signal intensity in dB RMS)</span>
         <span style="color: #7c3aed; font-weight: 800;">11.03%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -744,7 +744,7 @@ def get_features_html():
 
     <div>
       <div class="dash-progress-header">
-        <span>7. Different_Words (מילים שהוחלפו בין המערכות)</span>
+        <span>7. Different_Words (Substituted words between transcription engines)</span>
         <span style="color: #64748b; font-weight: 800;">6.89%</span>
       </div>
       <div class="dash-progress-track" style="height: 14px;">
@@ -764,25 +764,25 @@ def get_gallery_html():
     return f"""
 {DASHBOARD_CSS}
 <div class="dash-panel">
-  <div class="dash-title">🖼️ תרשימים מדעיים מוכנים להעתקה לדוח הפרויקט (300 DPI)</div>
-  <div class="dash-desc">התרשימים שמורים פיזית בתיקיית <code>figures/</code> ברזולוציה מקסימלית:</div>
+  <div class="dash-title">🖼️ Publication Figures (300 DPI High-Resolution)</div>
+  <div class="dash-desc">Figures are physically saved in the <code>figures/</code> directory ready for publication:</div>
 
   <div class="dash-gallery-grid">
     <div class="dash-fig-card">
-      <img src="{fig1}" alt="תרשים 1: השוואת 5 מודלים">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">תרשים 1: השוואת 5 מודלים</div>
+      <img src="{fig1}" alt="Figure 1: 5 Models Benchmark Comparison">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 1: Comparison of 5 Models</div>
     </div>
     <div class="dash-fig-card">
-      <img src="{fig2}" alt="תרשים 2: מטריצת בלבול ומדדי דיוק">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">תרשים 2: מטריצת בלבול ומדדי דיוק</div>
+      <img src="{fig2}" alt="Figure 2: Confusion Matrix & Accuracy Metrics">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 2: Confusion Matrix & Performance Metrics</div>
     </div>
     <div class="dash-fig-card">
-      <img src="{fig3}" alt="תרשים 3: דירוג חשיבות 9 הפיצ'רים">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">תרשים 3: דירוג חשיבות 9 הפיצ'רים</div>
+      <img src="{fig3}" alt="Figure 3: 9 Multimodal Features Importance Ranking">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 3: 9 Multimodal Features Importance Ranking</div>
     </div>
     <div class="dash-fig-card">
-      <img src="{fig4}" alt="תרשים 4: AI מול אדם ומגמת המפגשים">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">תרשים 4: AI מול אדם ומגמת המפגשים</div>
+      <img src="{fig4}" alt="Figure 4: AI vs. Human Condition & Longitudinal Progress">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 4: AI vs. Human Condition & Longitudinal Progress</div>
     </div>
   </div>
 </div>
