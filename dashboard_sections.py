@@ -647,8 +647,8 @@ def get_conditions_html():
       <thead>
         <tr>
           <th>Learning Condition</th>
-          <th>Average Silence</th>
-          <th>Noise Level (SNR)</th>
+          <th>Average Pause Duration</th>
+          <th>Ambient Noise Index</th>
           <th>Speech Overlap</th>
           <th>ASR Accuracy</th>
         </tr>
@@ -656,14 +656,14 @@ def get_conditions_html():
       <tbody>
         <tr>
           <td style="font-weight: 700; color: #1e40af;">Artificial Intelligence Bot (AI)</td>
-          <td>12.4 seconds</td>
+          <td>1.24 seconds</td>
           <td>0.08 (Very Quiet)</td>
           <td>0.0% (No Overlap)</td>
           <td style="font-weight: 700; color: #059669;">82.0% (High)</td>
         </tr>
         <tr>
           <td style="font-weight: 700; color: #6d28d9;">Human Teacher</td>
-          <td>18.7 seconds</td>
+          <td>1.87 seconds</td>
           <td>0.14 (Background Noise)</td>
           <td>14.2% Overlap</td>
           <td style="font-weight: 700; color: #d97706;">78.0% (Moderate)</td>
@@ -785,7 +785,7 @@ def get_gallery_html():
     <div class="dash-fig-card">
       <img src="{fig4}" alt="Figure 4: AI vs. Human Condition & Longitudinal Progress">
       <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 4: Research Insights — AI vs. Human Condition & Longitudinal SLA Progress</div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Left: Autonomous AI (0.77) vs. Scaffolded Human (0.84) | Right: Upward Longitudinal Growth (0.74 → 0.84)</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Left: AI Bot (0.82) vs. Human Teacher (0.78) | Right: Upward Longitudinal Growth (0.74 → 0.84)</div>
     </div>
     <div class="dash-fig-card">
       <img src="{fig5}" alt="Figure 5: Active Learning Flywheel Trajectory (63.5% → 92.5%)">
