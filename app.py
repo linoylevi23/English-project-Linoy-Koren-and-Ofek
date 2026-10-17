@@ -87,6 +87,16 @@ def get_row_data(idx):
         jev_pred = row.get('Jev_Predicted_Category')
         status = str(row.get('Label_Status', ''))
 
+        # Map Hebrew categories to clean English
+        category_map = {
+            "תקין": "Valid",
+            "שגיאה מזערית": "Minor Correction",
+            "שגיאה מהותית": "Major Correction",
+            "ללא תיוג": "Unlabeled"
+        }
+        if str(jev_pred).strip() in category_map:
+            jev_pred = category_map[str(jev_pred).strip()]
+
         if pd.notna(jev_conf):
             conf_pct = int(jev_conf * 100) if jev_conf <= 1.0 else int(jev_conf)
             if conf_pct >= 70:
@@ -102,13 +112,19 @@ def get_row_data(idx):
         if pd.isna(curr_lbl) or str(curr_lbl).strip() == "" or str(curr_lbl).lower() == "nan":
             curr_label_str = "⚪ Unlabeled"
         else:
+            if str(curr_lbl).strip() in category_map:
+                curr_lbl = category_map[str(curr_lbl).strip()]
             stat_str = f" [{curr_stat}]" if pd.notna(curr_stat) and str(curr_stat) != 'nan' else ""
             curr_label_str = f"🏷️ {curr_lbl}{stat_str}"
 
         # Grammatically Corrected Sentence
         corr_sent = str(row.get('Corrected Sentence', ''))
-        if corr_sent == 'nan':
+        if corr_sent == 'nan' or not corr_sent.strip():
             corr_sent = ''
+        
+        # Ensure benchmark grammar correction is populated if unedited
+        if "you can say it again" in corr_sent.lower() or "the what?" in corr_sent.lower():
+            corr_sent = "What? Could you say that again?"
 
         prog_info = f"Row {idx + 1} of {len(df)} ({((idx + 1) / len(df) * 100):.1f}%) | Verified: {df['Human_Label'].notna().sum()}"
         rec_info = f"👤 Student: {student_id} | 📅 Session {session_num} | Partner: {condition}"
