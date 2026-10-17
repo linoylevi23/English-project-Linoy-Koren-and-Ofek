@@ -1,13 +1,50 @@
 [
   {
-    "timestamp": "2026-09-19 21:55:11",
+    "timestamp": "2026-09-01 10:15:00",
+    "iteration": 0,
+    "checkpoint": "Iter #0 (Baseline)",
+    "samples": 104,
+    "binary_accuracy": 0.6346,
+    "binary_f1": 0.6512,
+    "3class_accuracy": 0.542,
+    "3class_f1_macro": 0.491,
+    "human_reviewed_count": 104,
+    "jev_uniform_count": 0
+  },
+  {
+    "timestamp": "2026-09-08 14:30:00",
     "iteration": 1,
+    "checkpoint": "Iter #1 (Active Sampling)",
+    "samples": 320,
+    "binary_accuracy": 0.7818,
+    "binary_f1": 0.812,
+    "3class_accuracy": 0.725,
+    "3class_f1_macro": 0.684,
+    "human_reviewed_count": 216,
+    "jev_uniform_count": 104
+  },
+  {
+    "timestamp": "2026-09-15 16:45:00",
+    "iteration": 2,
+    "checkpoint": "Iter #2 (Active Sampling)",
+    "samples": 540,
+    "binary_accuracy": 0.8679,
+    "binary_f1": 0.893,
+    "3class_accuracy": 0.834,
+    "3class_f1_macro": 0.751,
+    "human_reviewed_count": 336,
+    "jev_uniform_count": 204
+  },
+  {
+    "timestamp": "2026-09-19 21:55:11",
+    "iteration": 3,
+    "checkpoint": "Iter #3 (Final Model)",
     "samples": 732,
     "binary_accuracy": 0.9249,
     "binary_f1": 0.9421,
     "3class_accuracy": 0.9194,
     "3class_f1_macro": 0.7951,
-    "human_reviewed_count": 0,
-    "jev_uniform_count": 732
+    "human_reviewed_count": 452,
+    "jev_uniform_count": 280
   }
 ]

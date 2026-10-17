@@ -760,6 +760,8 @@ def get_gallery_html():
     fig2 = get_base64_image("figures/fig2_confusion_matrix.png")
     fig3 = get_base64_image("figures/fig3_feature_importance.png")
     fig4 = get_base64_image("figures/fig4_research_insights.png")
+    fig5 = get_base64_image("figures/active_learning_progress.png")
+    fig6 = get_base64_image("figures/jev_confusion_matrix.png")
 
     return f"""
 {DASHBOARD_CSS}
@@ -774,7 +776,7 @@ def get_gallery_html():
     </div>
     <div class="dash-fig-card">
       <img src="{fig2}" alt="Figure 2: Confusion Matrix & Accuracy Metrics">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 2: Confusion Matrix & Performance Metrics</div>
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 2: Confusion Matrix & Performance Metrics (XGBoost 92.5%)</div>
     </div>
     <div class="dash-fig-card">
       <img src="{fig3}" alt="Figure 3: 9 Multimodal Features Importance Ranking">
@@ -782,7 +784,22 @@ def get_gallery_html():
     </div>
     <div class="dash-fig-card">
       <img src="{fig4}" alt="Figure 4: AI vs. Human Condition & Longitudinal Progress">
-      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 4: AI vs. Human Condition & Longitudinal Progress</div>
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 4: Research Insights — AI vs. Human Condition & Longitudinal SLA Progress</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Left: Autonomous AI (0.77) vs. Scaffolded Human (0.84) | Right: Upward Longitudinal Growth (0.74 → 0.84)</div>
+    </div>
+    <div class="dash-fig-card">
+      <img src="{fig5}" alt="Figure 5: Active Learning Flywheel Trajectory (63.5% → 92.5%)">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 5: Active Learning Flywheel Trajectory (63.5% → 92.5%)</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">4 Retraining Cycles: Iter #0 (63.5% / 54.2%) → Iter #1 (78.2% / 72.5%) → Iter #2 (86.8% / 83.4%) → Iter #3 (92.5% / 91.9%)</div>
+    </div>
+    <div class="dash-fig-card" style="border: 1px solid #fed7aa; background: #fffaf5;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <span class="dash-badge" style="background: #ffedd5; color: #9a3412; font-size: 10px; font-weight: 700; text-transform: uppercase;">Motivation Benchmark (Baseline)</span>
+        <span style="font-size: 11px; color: #dc2626; font-weight: 700;">Zero-Shot LLM: 50.0% Acc</span>
+      </div>
+      <img src="{fig6}" alt="Figure 6: Motivation Baseline - Off-the-Shelf LLM vs. Human Ground-Truth">
+      <div style="font-size: 12px; font-weight: 700; color: #1e293b;">Figure 6: Baseline Pilot — Off-the-Shelf LLM (50.0%, κ=0.250) Proves Need for Multimodal ML</div>
+      <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Human Pilot Validation (N=18). Demonstrates that generic LLM prompting fails at phonetic error grading.</div>
     </div>
   </div>
 </div>
