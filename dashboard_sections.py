@@ -333,7 +333,7 @@ def get_student_progression_html():
     <div class="dash-progress-group">
       <div class="dash-progress-header">
         <span>Session 3</span>
-        <span style="font-weight: 700; color: #d97706;">Confidence: 0.608 | Accelerated rate: 8.18 words/sec ⚠️</span>
+        <span style="font-weight: 700; color: #d97706;">Confidence: 0.608 | Accelerated rate: 5.48 words/sec ⚠️</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 60.8%; background-color: #f59e0b;"></div>
@@ -343,7 +343,7 @@ def get_student_progression_html():
     <div class="dash-progress-group">
       <div class="dash-progress-header">
         <span>Session 4</span>
-        <span style="font-weight: 700; color: #dc2626;">Confidence: 0.592 | Highly accelerated rate: 8.43 words/sec</span>
+        <span style="font-weight: 700; color: #dc2626;">Confidence: 0.592 | Highly accelerated rate: 5.85 words/sec</span>
       </div>
       <div class="dash-progress-track">
         <div class="dash-progress-fill" style="width: 59.2%; background-color: #ef4444;"></div>
@@ -351,7 +351,7 @@ def get_student_progression_html():
     </div>
 
     <div class="dash-alert dash-alert-amber">
-      <strong>Critical Insight for Research Question #7:</strong> Thomas Shelby's case demonstrates that a sharp surge in speech rate (from 3.5 words/sec to over 8 words/sec) causes syllable dropping and ASR transcription errors, explaining why <code>Speech_Rate</code> is the primary acoustic predictor in our model!
+      <strong>Critical Insight for Research Question #7:</strong> Thomas Shelby's case demonstrates that a sharp surge in speech rate (from 3.5 words/sec to ~5.8 words/sec, >350 WPM) causes coarticulation, syllable dropping, and ASR transcription errors, explaining why <code>Speech_Rate</code> is the primary acoustic predictor in our model!
     </div>
   </div>
 </div>
@@ -389,9 +389,9 @@ def get_student_progression_html():
         <td>0.801</td>
         <td style="font-weight: 700; color: #dc2626;">0.592</td>
         <td style="font-weight: 700; color: #dc2626;">-21.0% 📉</td>
-        <td>5.76 w/s</td>
+        <td>4.62 w/s</td>
         <td>414</td>
-        <td>Excessive speech rate (> 8 w/s) degraded transcription quality</td>
+        <td>Excessive speech rate (> 5.5 w/s, ~350 WPM) degraded transcription quality</td>
       </tr>
       <tr style="background: #f8fafc; font-weight: 800;">
         <td>Overall Session Mean</td>
