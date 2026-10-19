@@ -31,6 +31,9 @@ Whisper_Models/
 test_app.py
 test_ffprobe.py
 
+# Archives
+*.zip
+
 # OS / Editor files
 .DS_Store
 .vscode/
