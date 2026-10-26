@@ -1,0 +1,53 @@
+{
+  "sample_size": 731,
+  "legacy": {
+    "wer": 42.05,
+    "mae_ms": 4611.3,
+    "tiou": 0.274,
+    "anomalies": 91
+  },
+  "proposed": {
+    "wer": 21.87,
+    "mae_ms": 412.0,
+    "tiou": 0.742,
+    "anomalies": 0
+  },
+  "whisperx": {
+    "wer": 18.5,
+    "mae_ms": 85.0,
+    "tiou": 0.895,
+    "anomalies": 0
+  },
+  "table": [
+    {
+      "Alignment Method": "Legacy Greedy (Baseline)",
+      "One-to-Many": "No (Single Segment)",
+      "Temporal Monotonicity": "No (Unconstrained)",
+      "Turn WER (%)": "42.1%",
+      "Boundary MAE": "4611 ms",
+      "Temporal IoU (t-IoU)": "0.274",
+      "Time Jumps >30s": "91 turns (12.4%)",
+      "Computational Footprint": "Low (O(N) difflib)"
+    },
+    {
+      "Alignment Method": "Proposed Chronological One-to-Many",
+      "One-to-Many": "Yes (Up to 5 Segments)",
+      "Temporal Monotonicity": "Yes (30s Window + 1.5s Gap)",
+      "Turn WER (%)": "21.9%",
+      "Boundary MAE": "412 ms",
+      "Temporal IoU (t-IoU)": "0.742",
+      "Time Jumps >30s": "0 turns (0.0%)",
+      "Computational Footprint": "Lightweight (Built-in Python/Librosa)"
+    },
+    {
+      "Alignment Method": "WhisperX Forced Alignment (Benchmark)",
+      "One-to-Many": "Yes (CTC Phoneme Frames)",
+      "Temporal Monotonicity": "Yes (Viterbi CTC Path)",
+      "Turn WER (%)": "18.5%",
+      "Boundary MAE": "85 ms",
+      "Temporal IoU (t-IoU)": "0.895",
+      "Time Jumps >30s": "0 turns (0.0%)",
+      "Computational Footprint": "Heavy (PyTorch + Wav2Vec2 CTC Models)"
+    }
+  ]
+}

@@ -10,17 +10,17 @@
     "Different_Words",
     "Has_Overlap"
   ],
-  "last_trained": "2026-09-19 21:55:11",
-  "training_samples": 732,
+  "last_trained": "2026-10-25 07:40:51",
+  "training_samples": 731,
   "metrics": {
-    "timestamp": "2026-09-19 21:55:11",
-    "iteration": 1,
-    "samples": 732,
-    "binary_accuracy": 0.9249,
-    "binary_f1": 0.9421,
-    "3class_accuracy": 0.9194,
-    "3class_f1_macro": 0.7951,
-    "human_reviewed_count": 0,
-    "jev_uniform_count": 732
+    "timestamp": "2026-10-25 07:40:51",
+    "iteration": 6,
+    "samples": 731,
+    "binary_accuracy": 0.9261,
+    "binary_f1": 0.9429,
+    "3class_accuracy": 0.9139,
+    "3class_f1_macro": 0.7897,
+    "human_reviewed_count": 1,
+    "jev_uniform_count": 730
   }
 }

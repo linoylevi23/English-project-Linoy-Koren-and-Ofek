@@ -1,0 +1,40 @@
+{
+  "der": 2.21,
+  "attribution_accuracy": 97.99,
+  "attribution_f1": 95.95,
+  "student_wer_oracle": 33.59,
+  "student_wer_realistic": 34.46,
+  "delta_wer": 0.87,
+  "xgboost_accuracy_oracle": 92.61,
+  "xgboost_f1_oracle": 94.29,
+  "xgboost_accuracy_realistic": 92.2,
+  "xgboost_f1_realistic": 94.01,
+  "delta_accuracy": 0.41,
+  "delta_f1": 0.29,
+  "summary_table": [
+    {
+      "Diarization Scenario": "Realistic (Pyannote Pipeline)",
+      "Speaker Source": "Neural Diarization (DER 2.21%)",
+      "Student Turn WER (%)": "34.5%",
+      "XGBoost Accuracy (%)": "92.2%",
+      "XGBoost F1-Score (%)": "94.0%",
+      "Primary Error Source": "Speech rate distortion and boundary shift"
+    },
+    {
+      "Diarization Scenario": "Oracle (Human Ground Truth)",
+      "Speaker Source": "Human Reference (0% DER)",
+      "Student Turn WER (%)": "33.6%",
+      "XGBoost Accuracy (%)": "92.6%",
+      "XGBoost F1-Score (%)": "94.3%",
+      "Primary Error Source": "Isolated L2 speech acoustic variability"
+    },
+    {
+      "Diarization Scenario": "Diarization Impact Delta (Δ)",
+      "Speaker Source": "Difference",
+      "Student Turn WER (%)": "+0.9%",
+      "XGBoost Accuracy (%)": "-0.4%",
+      "XGBoost F1-Score (%)": "-0.3%",
+      "Primary Error Source": "Direct quantification of diarization error propagation"
+    }
+  ]
+}

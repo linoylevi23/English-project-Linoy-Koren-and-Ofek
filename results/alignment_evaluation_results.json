@@ -1,0 +1,33 @@
+{
+  "continuous_wer": 12.99,
+  "turn_aligned_wer": 16.54,
+  "alignment_penalty": 3.55,
+  "boundary_mae_ms": 1658.7,
+  "mean_tiou": 0.232,
+  "pct_collar_250": 22.47,
+  "pct_collar_500": 34.18,
+  "speaker_breakdown": {
+    "AI": {
+      "turns": 151,
+      "words": 3754,
+      "wer": 7.14,
+      "mean_confidence": 0.919,
+      "mean_tiou": 0.253
+    },
+    "Observer": {
+      "turns": 30,
+      "words": 260,
+      "wer": 18.46,
+      "mean_confidence": 0.866,
+      "mean_tiou": 0.0
+    },
+    "Student": {
+      "turns": 135,
+      "words": 2039,
+      "wer": 33.59,
+      "mean_confidence": 0.741,
+      "mean_tiou": 0.259
+    }
+  },
+  "sample_evaluated_turns": 316
+}

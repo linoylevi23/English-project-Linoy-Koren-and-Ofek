@@ -1,0 +1,39 @@
+{
+  "total_turns": 1093,
+  "anomalies": {
+    "gt_15s": 100,
+    "gt_30s": 67,
+    "gt_60s": 58,
+    "gt_300s": 22,
+    "gt_720s": 2,
+    "inversions": 77
+  },
+  "extreme_cases": [
+    {
+      "student": "lilo",
+      "session": "1.0",
+      "row_idx": 7,
+      "prev_end": 58.48,
+      "start": 798.0,
+      "drift_min": 12.33,
+      "chatgpt_text": "Ah, wow, because of all the tests, I can't hang out a lot. I don't have enough t",
+      "whisper_text": "Finish them and succeed as I don't so I don't have enough time, but I really lik"
+    },
+    {
+      "student": "rocky",
+      "session": "3.0",
+      "row_idx": 577,
+      "prev_end": 68.96,
+      "start": 905.24,
+      "drift_min": 13.94,
+      "chatgpt_text": "עיבוד אותות",
+      "whisper_text": "Thank you."
+    }
+  ],
+  "global_wer": 40.59,
+  "clean_wer": 39.44,
+  "anom_wer": 53.36,
+  "wer_inflation_points": 1.15,
+  "total_deletions": 7419,
+  "deletion_share_pct": 85.34
+}

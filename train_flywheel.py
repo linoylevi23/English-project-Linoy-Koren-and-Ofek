@@ -21,7 +21,7 @@ import warnings
 from typing import Dict, Any, Tuple
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import StratifiedKFold, cross_validate
+from sklearn.model_selection import StratifiedKFold, GroupKFold, cross_validate
 from xgboost import XGBClassifier
 
 warnings.filterwarnings("ignore")
@@ -179,8 +179,14 @@ def retrain_active_learning(
 
     X, y_bin, y_3c = prepare_features_and_targets(labeled_df)
 
-    # 5-Fold Stratified Cross Validation
+    # 5-Fold Stratified Cross Validation (Standard Benchmark)
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+    # Student-Independent GroupKFold (Leak-Free Validation - Rejection #9)
+    student_groups = labeled_df["Student ID"].fillna("Unknown").values
+    n_groups = len(np.unique(student_groups))
+    gkf_splits = min(5, n_groups)
+    gkf = GroupKFold(n_splits=gkf_splits)
 
     # 1. Train & Validate Binary XGBoost
     xgb_binary = XGBClassifier(
@@ -194,6 +200,15 @@ def retrain_active_learning(
     bin_acc = float(cv_bin["test_accuracy"].mean())
     bin_f1 = float(cv_bin["test_f1"].mean())
 
+    # GroupKFold evaluation (Student-Independent)
+    cv_bin_group = cross_validate(xgb_binary, X, y_bin, cv=gkf, groups=student_groups, scoring=["accuracy", "f1"])
+    bin_group_acc = float(cv_bin_group["test_accuracy"].mean())
+    bin_group_f1 = float(cv_bin_group["test_f1"].mean())
+
+    if verbose:
+        print(f"   • Stratified CV (Random):      Accuracy = {bin_acc*100:.2f}% | F1 = {bin_f1*100:.2f}%")
+        print(f"   • GroupKFold (Student-Split):  Accuracy = {bin_group_acc*100:.2f}% | F1 = {bin_group_f1*100:.2f}% (Leak-Free)")
+
     # 2. Train & Validate 3-Class XGBoost
     xgb_3class = XGBClassifier(
         n_estimators=100,
@@ -205,6 +220,10 @@ def retrain_active_learning(
     cv_3c = cross_validate(xgb_3class, X, y_3c, cv=cv, scoring=["accuracy", "f1_macro"])
     tri_acc = float(cv_3c["test_accuracy"].mean())
     tri_f1 = float(cv_3c["test_f1_macro"].mean())
+
+    cv_3c_group = cross_validate(xgb_3class, X, y_3c, cv=gkf, groups=student_groups, scoring=["accuracy", "f1_macro"])
+    tri_group_acc = float(cv_3c_group["test_accuracy"].mean())
+    tri_group_f1 = float(cv_3c_group["test_f1_macro"].mean())
 
     # 3. Fit Final Production Models on 100% of Verified Data
     xgb_binary.fit(X, y_bin)
